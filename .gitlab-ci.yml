@@ -1,0 +1,68 @@
+image: node:14.16.0
+
+stages:
+  - build
+  - deploy
+
+.docker_login: &docker_login
+  - echo "$DOCKER_ACCESS_TOKEN" | docker login --username $DOCKER_USER --password-stdin
+
+#DOCKER_BUILDKIT=1 to choose right .dockerignore file https://github.com/moby/moby/issues/12886 https://docs.docker.com/develop/develop-images/build_enhancements/
+build:web:
+  image: docker:20.10.5
+  services:
+    - docker:20.10.5-dind
+  stage: build
+  before_script:
+    - *docker_login
+  script:
+    - DOCKER_BUILDKIT=1 docker build -t $IMAGE_NAME:latest .
+    - docker push $IMAGE_NAME:latest
+  tags:
+    - docker
+  only:
+    refs:
+      - master
+
+deploy:web:
+  stage: deploy
+  before_script:
+    ##
+    ## Install ssh-agent if not already installed, it is required by Docker.
+    ## (change apt-get to yum if you use an RPM-based image)
+    ##
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+
+    ##
+    ## Run ssh-agent (inside the build environment)
+    ##
+    - eval $(ssh-agent -s)
+
+    ##
+    ## Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
+    - ssh-add <(echo "$SSH_PRIVATE_KEY" | base64 -d)
+
+    ##
+    ## Create the SSH directory and give it the right permissions
+    ##
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+
+    ##
+    ## You can optionally disable host key checking. Be aware that by adding that
+    ## you are suspectible to man-in-the-middle attacks.
+    ## WARNING: Use this only with the Docker executor, if you use it with shell
+    ## you will overwrite your user's SSH config.
+    ##
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - ssh $DEPLOY_USER@$APP_WEB_HOST "mkdir -p $DEPLOY_APP_PATH"
+    - scp -r docker-compose.yml $DEPLOY_USER@$APP_WEB_HOST:$DEPLOY_APP_PATH
+    - ssh $DEPLOY_USER@$APP_WEB_HOST "cd $DEPLOY_APP_PATH && docker-compose pull"
+    - ssh $DEPLOY_USER@$APP_WEB_HOST "cd $DEPLOY_APP_PATH && docker-compose up -d --no-deps"
+    - ssh $DEPLOY_USER@$APP_WEB_HOST "docker image ls --filter reference=$IMAGE_NAME --filter dangling=true --quiet | xargs -r docker image rm"
+  tags:
+    - docker
+  only:
+    refs:
+      - master
