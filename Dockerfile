@@ -32,7 +32,7 @@ RUN npm run build --output-path=$APP_ROOT/dist
 # Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
 FROM nginx:1.17.8-alpine
 
-COPY --from=build-stage /usr/src/app/dist/page-cv/ /usr/share/nginx/html
+COPY --from=build-stage $APP_ROOT/dist/gudigors-cv/ /usr/share/nginx/html
 
 # Copy the default nginx.conf
 COPY nginx.conf /etc/nginx/nginx.conf
