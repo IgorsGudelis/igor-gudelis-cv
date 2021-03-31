@@ -1,0 +1,20 @@
+$small: "small";
+$medium: "medium";
+$large: "large";
+
+$breakpoints: (
+  #{$small}: (
+      min-width: 320px,
+    ),
+  #{$medium}: (
+      min-width: 800px,
+    ),
+  #{$large}: (
+      min-width: 1200px,
+    )
+);
+
+$roboto: "Roboto", "Arial", sans-serif;
+
+$animation-function: cubic-bezier(0.25, 0.01, 0.25, 1);
+$transition-data: 0.2s $animation-function 0s;
