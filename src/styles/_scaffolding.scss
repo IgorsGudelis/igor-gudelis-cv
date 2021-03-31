@@ -40,10 +40,10 @@ p {
   margin: 0;
 }
 
-.visually-hidden {
-  position: absolute;
-  clip: rect(0 0 0 0);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
+.row {
+  display: flex;
+  width: 100%;
+  max-width: $max-width;
+  margin-left: auto;
+  margin-right: auto;
 }

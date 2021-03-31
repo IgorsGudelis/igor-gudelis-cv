@@ -1,0 +1,43 @@
+@import "colors";
+@import "text";
+
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+.home__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-image: url("/assets/images/header-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home__content {
+  flex-direction: column;
+}
+
+.home__title,
+.home__text {
+  text-align: center;
+}
+
+.home__title {
+  @include h1;
+
+  color: $white;
+}
+
+.home__text {
+  margin-top: 16px;
+  color: $white-100-50;
+}
