@@ -1,0 +1,78 @@
+@import "colors";
+@import "mixins";
+@import "text";
+@import "vars";
+
+.about {
+  padding-top: 140px;
+  background-color: $color-gray-17;
+
+  @include respond-to($medium) {
+    padding-top: 192px;
+  }
+
+  @include respond-to($large) {
+    padding-top: 192px;
+  }
+}
+
+.about__ava {
+  display: none;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border-color: $color-white-100-2;
+  border-style: solid;
+
+  @include respond-to($medium) {
+    display: block;
+    width: 128px;
+    height: 128px;
+    border-width: 14px;
+  }
+
+  @include respond-to($large) {
+    display: block;
+    width: 160px;
+    height: 160px;
+    border-width: 16px;
+  }
+}
+
+.about__info {
+  @include respond-to($medium) {
+    margin-left: 52px;
+  }
+
+  @include respond-to($large) {
+    margin-left: 110px;
+  }
+}
+
+.about__title {
+  @include h5;
+
+  color: $color-white;
+
+  @include respond-to($medium) {
+    @include h4;
+  }
+
+  @include respond-to($large) {
+    @include h4;
+  }
+}
+
+.about__description {
+  @include p3;
+
+  margin-top: 16px;
+  color: $color-white-100-50;
+
+  @include respond-to($medium) {
+    @include p2;
+  }
+
+  @include respond-to($large) {
+    @include p2;
+  }
+}

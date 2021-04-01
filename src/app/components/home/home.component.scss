@@ -1,5 +1,7 @@
 @import "colors";
+@import "mixins";
 @import "text";
+@import "vars";
 
 .home {
   display: flex;
@@ -20,10 +22,39 @@
   background-image: url("/assets/images/header-bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $color-black-100-50;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      360deg,
+      $color-black 15%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    opacity: 0.4;
+  }
 }
 
 .home__content {
   flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+  padding-left: $padding-mobile-layout;
+  padding-right: $padding-mobile-layout;
 }
 
 .home__title,
@@ -32,12 +63,24 @@
 }
 
 .home__title {
-  @include h1;
+  @include h3;
 
-  color: $white;
+  color: $color-white;
+
+  @include respond-to($medium) {
+    @include h2;
+  }
+
+  @include respond-to($large) {
+    @include h1;
+  }
 }
 
 .home__text {
-  margin-top: 16px;
-  color: $white-100-50;
+  margin-top: 24px;
+  color: $color-white-100-50;
+
+  @include respond-to($large) {
+    @include p1;
+  }
 }
