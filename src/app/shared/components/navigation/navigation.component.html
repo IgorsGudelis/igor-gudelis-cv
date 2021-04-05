@@ -1,0 +1,9 @@
+<nav class="navigation">
+  <a
+    class="navigation__item"
+    [href]="'#' + item.link"
+    *ngFor="let item of navItems"
+  >
+    {{ item.title }}
+  </a>
+</nav>
