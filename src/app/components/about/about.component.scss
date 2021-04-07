@@ -17,21 +17,18 @@
 }
 
 .about__ava {
-  display: none;
   flex-shrink: 0;
   border-radius: 50%;
   border-color: $color-white-100-2;
   border-style: solid;
 
   @include respond-to($medium) {
-    display: block;
     width: 128px;
     height: 128px;
     border-width: 14px;
   }
 
   @include respond-to($large) {
-    display: block;
     width: 160px;
     height: 160px;
     border-width: 16px;

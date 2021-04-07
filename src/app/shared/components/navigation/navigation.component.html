@@ -1,9 +1,37 @@
-<nav class="navigation">
-  <a
-    class="navigation__item"
-    [href]="'#' + item.link"
-    *ngFor="let item of navItems"
+<nav
+  class="navigation"
+  [class._small-screen]="screenService.screen === ScreenWidth.MOBILE"
+>
+  <ng-container
+    *ngIf="screenService.screen !== ScreenWidth.MOBILE; else navMobileTmpl"
   >
-    {{ item.title }}
-  </a>
+    <ul class="navigation__list">
+      <ng-container *ngTemplateOutlet="navItemTmpl"></ng-container>
+    </ul>
+  </ng-container>
 </nav>
+
+<ng-template #navMobileTmpl>
+  <button class="navigation__menu-btn" (click)="onToggleMenuMobile()">
+    <span
+      class="navigation__menu-btn-line"
+      [class._active]="isMenuMobileShown"
+    ></span>
+  </button>
+
+  <ul
+    class="navigation__list _small-screen"
+    *ngIf="isMenuMobileShown"
+    @navMobileShowHide
+  >
+    <ng-container *ngTemplateOutlet="navItemTmpl"></ng-container>
+  </ul>
+</ng-template>
+
+<ng-template #navItemTmpl>
+  <li class="navigation__item" *ngFor="let item of navItems">
+    <a class="navigation__link" [href]="'#' + item.link">
+      {{ item.title }}
+    </a>
+  </li>
+</ng-template>
