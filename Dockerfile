@@ -17,7 +17,6 @@ ENV PATH $APP_ROOT/node_modules/.bin:$PATH
 COPY package*.json $APP_ROOT/
 
 # install and cache app dependencies
-RUN npm install
 RUN npm install -g @angular/cli@latest
 
 # add app

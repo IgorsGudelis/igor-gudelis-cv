@@ -1,11 +1,24 @@
 image: node:14.16.0
 
 stages:
+  - setup
   - build
   - deploy
 
+  # Cache modules in between jobs
+cache: &node_modules_cache
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+      - node_modules/
+    policy: pull-push
+
 .docker_login: &docker_login
   - echo "$DOCKER_ACCESS_TOKEN" | docker login --username $DOCKER_USER --password-stdin
+
+bootstrap:npm:
+  stage: setup
+  script:
+    - npm ci
 
 #DOCKER_BUILDKIT=1 to choose right .dockerignore file https://github.com/moby/moby/issues/12886 https://docs.docker.com/develop/develop-images/build_enhancements/
 build:web:
@@ -13,6 +26,9 @@ build:web:
   services:
     - docker:20.10.5-dind
   stage: build
+  cache:
+    <<: *node_modules_cache
+    policy: pull
   before_script:
     - *docker_login
   script:
@@ -26,6 +42,7 @@ build:web:
 
 deploy:web:
   stage: deploy
+  cache: {}
   before_script:
     ##
     ## Install ssh-agent if not already installed, it is required by Docker.
