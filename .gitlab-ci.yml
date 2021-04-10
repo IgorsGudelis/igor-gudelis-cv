@@ -19,6 +19,8 @@ bootstrap:npm:
   stage: setup
   script:
     - npm ci
+  tags:
+    - docker
 
 #DOCKER_BUILDKIT=1 to choose right .dockerignore file https://github.com/moby/moby/issues/12886 https://docs.docker.com/develop/develop-images/build_enhancements/
 build:web:
