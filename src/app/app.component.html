@@ -3,7 +3,7 @@
     <app-navigation></app-navigation>
   </header>
 
-  <app-home id="home" [isHomeContentVisible]="isHomeContentVisible"></app-home>
+  <app-home id="home" [isHomeContentVisible]="!isLoading"></app-home>
   <app-about id="about"></app-about>
 
   <div class="app__preloader" *ngIf="isPreloaderVisible">

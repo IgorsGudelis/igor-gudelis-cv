@@ -34,7 +34,6 @@ import { ScreenService } from '@shared/services';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
-  isHomeContentVisible = false;
   isLoading = true;
   isPreloaderVisible = true;
 
@@ -53,11 +52,6 @@ export class AppComponent implements OnInit {
       this.isPreloaderVisible = false;
       this.cdr.markForCheck();
     }
-
-    setTimeout(() => {
-      this.isHomeContentVisible = true;
-      this.cdr.markForCheck();
-    }, event.totalTime / 2);
   }
 
   private onReadyStateComplete(): void {
