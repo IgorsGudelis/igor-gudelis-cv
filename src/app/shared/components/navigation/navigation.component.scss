@@ -3,6 +3,8 @@
 @import "text";
 @import "vars";
 
+$btn-line-offset: -10px;
+
 :host {
   display: flex;
   justify-content: center;
@@ -137,11 +139,11 @@
   }
 
   &::before {
-    top: -10px;
+    top: $btn-line-offset;
   }
 
   &::after {
-    bottom: -10px;
+    bottom: $btn-line-offset;
   }
 
   &._active {

@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ScreenWidth } from '@shared/enums';
 import { fromEvent, Observable, of, Subject } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
 
-@UntilDestroy({ checkProperties: true })
+@UntilDestroy()
 @Injectable({
   providedIn: 'root',
 })
@@ -16,11 +16,7 @@ export class ScreenService {
     return this.screenChange$.asObservable();
   }
 
-  constructor() {
-    this.addScreenResizedHandler();
-  }
-
-  private addScreenResizedHandler(): void {
+  addScreenResizeListener(): void {
     of(window.innerWidth)
       .pipe(
         tap((innerWidth) => this.detectScreen(innerWidth)),
@@ -32,6 +28,13 @@ export class ScreenService {
         untilDestroyed(this)
       )
       .subscribe();
+  }
+
+  onReadyStateComplete(): Observable<string> {
+    return fromEvent(document, 'readystatechange').pipe(
+      map((event: any) => event.target?.readyState),
+      filter((state) => state === 'complete')
+    );
   }
 
   private detectScreen(innerWidth: number): void {

@@ -1,3 +1,4 @@
+@import "colors";
 @import "vars";
 
 :host {
@@ -25,4 +26,52 @@
   right: 0;
   z-index: 1;
   background-color: transparent;
+}
+
+.app__preloader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+}
+
+.app__preloader-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $color-black;
+}
+
+.app__preloader-svg {
+  animation: 1s linear infinite runPreloader;
+
+  @keyframes runPreloader {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.app__preloader-circle {
+  fill: transparent;
+  stroke-width: 4;
+
+  &._outer {
+    stroke: $color-white-100-20;
+  }
+
+  &._inner {
+    stroke: $color-white;
+    stroke-dasharray: 32 1000;
+  }
 }

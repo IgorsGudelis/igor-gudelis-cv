@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ScreenWidth } from '@shared/enums';
 import { ScreenService } from '@shared/services';
 
@@ -7,10 +7,8 @@ import { ScreenService } from '@shared/services';
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss'],
 })
-export class AboutComponent implements OnInit {
+export class AboutComponent {
   ScreenWidth = ScreenWidth;
 
   constructor(public screenService: ScreenService) {}
-
-  ngOnInit(): void {}
 }
