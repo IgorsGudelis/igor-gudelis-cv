@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { SharedTestingModule } from '@shared/shared.testing.module';
 
 import { NavigationComponent } from './navigation.component';
 
@@ -7,10 +8,9 @@ describe('NavigationComponent', () => {
   let fixture: ComponentFixture<NavigationComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ NavigationComponent ]
-    })
-    .compileComponents();
+    await TestBed.configureTestingModule(
+      SharedTestingModule
+    ).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +21,13 @@ describe('NavigationComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('#onToggleMenuMobile() should toggle #isMenuMobileShown', () => {
+    expect(component.isMenuMobileShown).toBe(false, 'false at first');
+    component.onToggleMenuMobile();
+    expect(component.isMenuMobileShown).toBe(true, 'on after click');
+    component.onToggleMenuMobile();
+    expect(component.isMenuMobileShown).toBe(false, 'on after second click');
   });
 });

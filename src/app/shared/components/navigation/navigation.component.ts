@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { showHideTopToBottomAnimation } from '@shared/animations';
 import { ScreenWidth } from '@shared/enums';
 import { ScreenService } from '@shared/services';
@@ -35,7 +35,10 @@ export class NavigationComponent implements OnInit {
 
   private onScreenInnerWidthChange(): void {
     this.screenService.screenInnerWidth$
-      .pipe(tap(() => this.cdr.markForCheck()))
+      .pipe(
+        tap(() => this.cdr.markForCheck()),
+        untilDestroyed(this)
+      )
       .subscribe();
   }
 }
