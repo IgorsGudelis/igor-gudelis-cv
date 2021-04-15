@@ -1,11 +1,18 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { showHideTopToBottomAnimation } from '@shared/animations';
 import { ScreenWidth } from '@shared/enums';
 import { ScreenService } from '@shared/services';
 import { tap } from 'rxjs/operators';
 
-import { NAV_ITEMS } from '../../constants';
 import { NavItemModel } from '../../models';
 
 @UntilDestroy()
@@ -16,8 +23,12 @@ import { NavItemModel } from '../../models';
   animations: [showHideTopToBottomAnimation],
 })
 export class NavigationComponent implements OnInit {
+  @Input() navItems: NavItemModel[] = [];
+  @Input() offsetToFixed!: number | undefined;
+  @Output() navigate = new EventEmitter<string>();
+
+  isNavFixed: boolean | undefined = false;
   isMenuMobileShown = false;
-  navItems: NavItemModel[] = NAV_ITEMS;
   ScreenWidth = ScreenWidth;
 
   constructor(
@@ -27,6 +38,23 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit(): void {
     this.onScreenInnerWidthChange();
+  }
+
+  @HostListener('window:scroll', ['$event.target'])
+  onScroll(doc: Document): void {
+    const scrollTop = doc?.scrollingElement?.scrollTop;
+
+    if (this.offsetToFixed === undefined || scrollTop === undefined) {
+      return;
+    }
+
+    this.isNavFixed =
+      this.screenService.screen !== ScreenWidth.MOBILE &&
+      scrollTop >= this.offsetToFixed;
+  }
+
+  onNavClick(link: string): void {
+    this.navigate.emit(link);
   }
 
   onToggleMenuMobile(): void {

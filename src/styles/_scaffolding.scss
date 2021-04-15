@@ -21,7 +21,7 @@ body {
   padding: 0;
   font-family: $roboto;
   font-size: 18px;
-  scroll-behavior: smooth;
+  overflow: auto;
 }
 
 a {

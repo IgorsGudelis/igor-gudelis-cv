@@ -1,10 +1,14 @@
 <main class="app">
   <header class="app__header">
-    <app-navigation></app-navigation>
+    <app-navigation
+      [offsetToFixed]="offsetToNavFixed"
+      [navItems]="navItems"
+      (navigate)="onNavigate($event)"
+    ></app-navigation>
   </header>
 
-  <app-home id="home" [isHomeContentVisible]="!isLoading"></app-home>
-  <app-about id="about"></app-about>
+  <app-home [isHomeContentVisible]="!isLoading" #home></app-home>
+  <app-about #about></app-about>
 
   <div class="app__preloader" *ngIf="isPreloaderVisible">
     <div

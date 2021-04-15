@@ -6,6 +6,7 @@
 .about {
   padding-top: 140px;
   background-color: $color-gray-17;
+  min-height: 1000px; // TODO: Remove after Testing scroll
 
   @include respond-to($medium) {
     padding-top: 192px;

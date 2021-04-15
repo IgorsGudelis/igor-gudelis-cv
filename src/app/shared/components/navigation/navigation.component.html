@@ -1,6 +1,7 @@
 <nav
   class="navigation"
   [class._small-screen]="screenService.screen === ScreenWidth.MOBILE"
+  [class._fixed]="isNavFixed"
 >
   <ng-container
     *ngIf="screenService.screen !== ScreenWidth.MOBILE; else navMobileTmpl"
@@ -30,7 +31,11 @@
 
 <ng-template #navItemTmpl>
   <li class="navigation__item" *ngFor="let item of navItems">
-    <a class="navigation__link" [href]="'#' + item.link">
+    <a
+      class="navigation__link"
+      [class._active]="item.isActive"
+      (click)="onNavClick(item.link)"
+    >
       {{ item.title }}
     </a>
   </li>

@@ -13,6 +13,9 @@ $btn-line-offset: -10px;
 
 .navigation {
   display: flex;
+  justify-content: center;
+  width: 100%;
+  height: $header-height;
 
   &._small-screen {
     position: fixed;
@@ -20,6 +23,23 @@ $btn-line-offset: -10px;
     left: 0;
     right: 0;
     z-index: 1;
+  }
+
+  &._fixed {
+    position: fixed;
+    background-color: $color-black;
+    transition: transform $transition-data;
+    animation: showNavFixed 250ms ease-in-out;
+  }
+
+  @keyframes showNavFixed {
+    from {
+      transform: translateY(-100%);
+    }
+
+    to {
+      transform: translateY(0);
+    }
   }
 }
 
@@ -73,6 +93,10 @@ $btn-line-offset: -10px;
   color: $color-white-100-50;
   transition: color $transition-data;
   cursor: pointer;
+
+  &._active {
+    color: $color-2;
+  }
 
   @include respond-to($small) {
     position: relative;
