@@ -50,6 +50,9 @@
 }
 
 .app__preloader-svg {
+  width: 64px;
+  height: 64px;
+
   animation: 1s linear infinite runPreloader;
 
   @keyframes runPreloader {

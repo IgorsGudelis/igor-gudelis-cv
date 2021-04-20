@@ -14,18 +14,15 @@
     <div
       class="app__preloader-overlay"
       *ngIf="isLoading"
-      @hidePreloader
-      (@hidePreloader.done)="onHidePreloaderAnimationDone($event)"
+      @hidePreloaderOverlay
+      (@hidePreloaderOverlay.done)="onHidePreloaderOverlayAnimationDone($event)"
     ></div>
-    <svg
-      class="app__preloader-svg"
-      *ngIf="isLoading"
-      height="64"
-      width="64"
-      @hidePreloaderCircle
-    >
+    <svg class="app__preloader-svg" *ngIf="isLoading" @hidePreloaderCircle>
       <circle class="app__preloader-circle _outer" cx="32" cy="32" r="24" />
       <circle class="app__preloader-circle _inner" cx="32" cy="32" r="24" />
     </svg>
   </div>
 </main>
+
+<app-scroll-button [offset]="offsetToNavFixed" (scrolling)="onScrollToTop()">
+</app-scroll-button>

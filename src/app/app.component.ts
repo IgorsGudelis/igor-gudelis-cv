@@ -25,7 +25,7 @@ import { ScreenService } from '@shared/services';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    trigger('hidePreloader', [
+    trigger('hidePreloaderOverlay', [
       transition(':leave', [
         animate('800ms 450ms ease-in-out', style({ opacity: 0 })),
       ]),
@@ -71,11 +71,11 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.observeSectionInterception();
-    this.offsetToNavFixed = this.aboutRef?.nativeElement?.offsetTop;
+    this.offsetToNavFixed = this.aboutElement?.offsetTop;
     this.cdr.detectChanges();
   }
 
-  onHidePreloaderAnimationDone(event: AnimationEvent): void {
+  onHidePreloaderOverlayAnimationDone(event: AnimationEvent): void {
     if (event.toState === 'void') {
       this.isPreloaderVisible = false;
       this.cdr.markForCheck();
@@ -94,6 +94,10 @@ export class AppComponent implements OnInit, AfterViewInit {
         break;
       }
     }
+  }
+
+  onScrollToTop(): void {
+    this.scrollTo(this.homeElement);
   }
 
   private observeSectionInterception(): void {

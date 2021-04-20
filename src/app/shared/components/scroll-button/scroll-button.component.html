@@ -1,0 +1,12 @@
+<button
+  class="scroll-btn _right"
+  [class._small-screen]="screenService.screen === ScreenWidth.MOBILE"
+  *ngIf="isScrollBtnVisible"
+  (click)="onScrollTo()"
+  [@fadeInOut]="{
+    value: currentTransition,
+    params: { duration: '350ms', translateY: 'translateY(200%)' }
+  }"
+>
+  Scroll top
+</button>

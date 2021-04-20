@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -33,20 +34,21 @@ export class NavigationComponent implements OnInit {
 
   constructor(
     public screenService: ScreenService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private viewPortScroller: ViewportScroller
   ) {}
 
   ngOnInit(): void {
     this.onScreenInnerWidthChange();
   }
 
-  @HostListener('window:scroll', ['$event.target'])
-  onScroll(doc: Document): void {
-    const scrollTop = doc?.scrollingElement?.scrollTop;
-
-    if (this.offsetToFixed === undefined || scrollTop === undefined) {
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    if (this.offsetToFixed === undefined) {
       return;
     }
+
+    const scrollTop = this.viewPortScroller.getScrollPosition()[1];
 
     this.isNavFixed =
       this.screenService.screen !== ScreenWidth.MOBILE &&

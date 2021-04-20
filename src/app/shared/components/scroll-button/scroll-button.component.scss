@@ -1,0 +1,26 @@
+@import "colors";
+
+.scroll-btn {
+  position: fixed;
+  bottom: 80px;
+  width: 64px;
+  height: 64px;
+  border: none;
+  border-radius: 50%;
+  color: $color-white;
+  background-color: $color-black;
+  cursor: pointer;
+  outline: none;
+
+  &._right {
+    right: 64px;
+
+    &._small-screen {
+      right: 16px;
+    }
+  }
+
+  &._small-screen {
+    bottom: 32px;
+  }
+}
