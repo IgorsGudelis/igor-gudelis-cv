@@ -8,7 +8,10 @@
   </header>
 
   <app-home [isHomeContentVisible]="!isLoading" #home></app-home>
+
   <app-about #about></app-about>
+
+  <app-testimonials #testimonials></app-testimonials>
 
   <div class="app__preloader" *ngIf="isPreloaderVisible">
     <div

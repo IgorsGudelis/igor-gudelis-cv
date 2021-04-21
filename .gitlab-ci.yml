@@ -7,10 +7,10 @@ stages:
 
   # Cache modules in between jobs
 cache: &node_modules_cache
-    key: $CI_COMMIT_REF_SLUG
-    paths:
-      - node_modules/
-    policy: pull-push
+  key: $CI_COMMIT_REF_SLUG
+  paths:
+    - node_modules/
+  policy: pull-push
 
 .docker_login: &docker_login
   - echo "$DOCKER_ACCESS_TOKEN" | docker login --username $DOCKER_USER --password-stdin
@@ -50,7 +50,7 @@ deploy:web:
     ## Install ssh-agent if not already installed, it is required by Docker.
     ## (change apt-get to yum if you use an RPM-based image)
     ##
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - "which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )"
 
     ##
     ## Run ssh-agent (inside the build environment)

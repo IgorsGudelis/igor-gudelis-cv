@@ -41,6 +41,7 @@ import { ScreenService } from '@shared/services';
 export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('about', { read: ElementRef }) aboutRef!: ElementRef;
   @ViewChild('home', { read: ElementRef }) homeRef!: ElementRef;
+  @ViewChild('testimonials', { read: ElementRef }) testimonialsRef!: ElementRef;
 
   isLoading = true;
   isPreloaderVisible = true;
@@ -49,6 +50,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   sectionIds = {
     about: 'about',
     home: 'home',
+    testimonials: 'testimonials',
   };
 
   private get aboutElement(): HTMLElement {
@@ -57,6 +59,10 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   private get homeElement(): HTMLElement {
     return this.homeRef.nativeElement;
+  }
+
+  private get testimonialsElement(): HTMLElement {
+    return this.testimonialsRef.nativeElement;
   }
 
   constructor(
@@ -104,7 +110,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     const options = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.5,
+      threshold: 0.75,
     };
     const observerHome = new IntersectionObserver(
       this.onSectionIntercept(this.sectionIds.home),
@@ -114,9 +120,14 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.onSectionIntercept(this.sectionIds.about),
       options
     );
+    const observerTestimonials = new IntersectionObserver(
+      this.onSectionIntercept(this.sectionIds.testimonials),
+      options
+    );
 
     observerHome.observe(this.homeElement);
     observerAbout.observe(this.aboutElement);
+    observerTestimonials.observe(this.testimonialsElement);
   }
 
   private onChangeNavActive(navLink: string): void {

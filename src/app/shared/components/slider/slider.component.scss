@@ -1,0 +1,50 @@
+@import "vars";
+
+.slider-container {
+  width: 300px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.slider {
+  width: 300px;
+  overflow: hidden;
+}
+
+.slider-list {
+  display: flex;
+  width: 1200px;
+  align-items: center;
+  margin: 0 auto;
+
+  &:not(._no-transition) {
+    transition: transform 300ms ease-in-out;
+  }
+}
+
+.slider-item {
+  flex-shrink: 0;
+  width: 300px;
+  transition: transform $transition-data;
+}
+
+.slider-img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.slider-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+  position: absolute;
+  bottom: -64px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.slider-btn {
+  width: 64px;
+  cursor: pointer;
+}
