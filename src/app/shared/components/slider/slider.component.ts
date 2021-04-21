@@ -1,49 +1,62 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   Input,
   OnDestroy,
+  OnInit,
   Renderer2,
+  TemplateRef,
   ViewChild
 } from '@angular/core';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { SliderItemBaseModel } from '@shared/models';
+import { ScreenService } from '@shared/services';
+import { tap } from 'rxjs/operators';
 
+@UntilDestroy()
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SliderComponent implements AfterViewInit, OnDestroy {
+export class SliderComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('sliderList') sliderListRef!: ElementRef;
 
-  @Input() itemsAmount!: number;
+  @Input() itemsCount = 1;
+  @Input() itemTmpl!: TemplateRef<HTMLElement>;
+  @Input() items!: SliderItemBaseModel[];
 
+  slideWidth!: number;
   private currentPosition = 0;
   private isAnimationEnd = true;
-  private minOutsidePosition = 4;
-  private slideWidth = 300;
+  private minOutsidePosition!: number;
   private sliderAnimationListener!: () => void;
 
   private get sliderElement(): HTMLElement {
     return this.sliderListRef.nativeElement;
   }
 
-  constructor(private renderer: Renderer2) {}
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private hostRef: ElementRef,
+    private renderer: Renderer2,
+    private screenService: ScreenService
+  ) {}
+
+  ngOnInit(): void {
+    this.onScreenInnerWidthChange();
+  }
 
   ngAfterViewInit(): void {
-    this.sliderAnimationListener = this.renderer.listen(
-      this.sliderElement,
-      'transitionend',
-      () => {
-        this.isAnimationEnd = true;
-      }
-    );
+    this.setInitialValues();
   }
 
   ngOnDestroy(): void {
-    this.sliderAnimationListener && this.sliderAnimationListener();
+    this.sliderAnimationListener();
   }
 
   onClickPrev(): void {
@@ -95,5 +108,30 @@ export class SliderComponent implements AfterViewInit, OnDestroy {
         }px)`;
       }, 10);
     }
+  }
+
+  private onScreenInnerWidthChange(): void {
+    this.screenService.screenInnerWidth$
+      .pipe(
+        tap(() => {
+          this.slideWidth = this.hostRef?.nativeElement.offsetWidth;
+          this.cdr.markForCheck();
+        }),
+        untilDestroyed(this)
+      )
+      .subscribe();
+  }
+
+  private setInitialValues(): void {
+    this.minOutsidePosition = this.items?.length;
+    this.slideWidth = this.hostRef?.nativeElement.offsetWidth;
+    this.sliderAnimationListener = this.renderer.listen(
+      this.sliderElement,
+      'transitionend',
+      () => {
+        this.isAnimationEnd = true;
+      }
+    );
+    this.cdr.markForCheck();
   }
 }

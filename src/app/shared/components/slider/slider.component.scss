@@ -1,19 +1,22 @@
 @import "vars";
 
+:host {
+  display: block;
+}
+
 .slider-container {
-  width: 300px;
+  width: 100%;
   position: relative;
-  margin: 0 auto;
 }
 
 .slider {
-  width: 300px;
+  width: 100%;
   overflow: hidden;
 }
 
-.slider-list {
+.slider__list {
   display: flex;
-  width: 1200px;
+  width: 12000px;
   align-items: center;
   margin: 0 auto;
 
@@ -22,29 +25,29 @@
   }
 }
 
-.slider-item {
+.slider__item {
   flex-shrink: 0;
-  width: 300px;
+  width: var(--item-width);
   transition: transform $transition-data;
 }
 
-.slider-img {
+.slider__img {
   width: 100%;
   object-fit: cover;
 }
 
-.slider-actions {
+.slider__actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 300px;
+  width: 100%;
   position: absolute;
   bottom: -64px;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.slider-btn {
+.slider__btn {
   width: 64px;
   cursor: pointer;
 }

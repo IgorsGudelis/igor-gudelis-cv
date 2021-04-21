@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TestimonialsSliderItemModel } from '@shared/models';
 
 @Component({
   selector: 'app-testimonials',
@@ -6,69 +7,38 @@ import { Component } from '@angular/core';
   styleUrls: ['./testimonials.component.scss'],
 })
 export class TestimonialsComponent {
-  // @ViewChild('sliderList') sliderListRef!: ElementRef;
-  // private currentPosition = 0;
-  // private isAnimationEnd = true;
-  // private maxPosition = 4;
-  // private slideWidth = 300;
-  // private sliderAnimationListener!: () => void;
-  // private get sliderElement(): HTMLElement {
-  //   return this.sliderListRef.nativeElement;
-  // }
-  // constructor(private renderer: Renderer2) {}
-  // ngAfterViewInit(): void {
-  //   this.sliderAnimationListener = this.renderer.listen(
-  //     this.sliderElement,
-  //     'transitionend',
-  //     () => {
-  //       this.isAnimationEnd = true;
-  //     }
-  //   );
-  // }
-  // ngOnDestroy(): void {
-  //   this.sliderAnimationListener && this.sliderAnimationListener();
-  // }
-  // onClickPrev(): void {
-  //   if (!this.isAnimationEnd) {
-  //     return;
-  //   }
-  //   this.currentPosition -= 1;
-  //   this.isAnimationEnd = false;
-  //   if (this.currentPosition < 0) {
-  //     this.currentPosition = this.maxPosition - 1;
-  //     this.renderer.addClass(this.sliderElement, '_no-transition');
-  //     this.sliderElement.style.transform = `translateX(-${
-  //       this.currentPosition * this.slideWidth
-  //     }px)`;
-  //     this.currentPosition -= 1;
-  //   }
-  //   setTimeout(() => {
-  //     this.renderer.removeClass(this.sliderElement, '_no-transition');
-  //     this.sliderElement.style.transform = `translateX(-${
-  //       this.currentPosition > 0 ? this.currentPosition * this.slideWidth : 0
-  //     }px)`;
-  //   }, 10);
-  // }
-  // onClickNext(): void {
-  //   if (!this.isAnimationEnd) {
-  //     return;
-  //   }
-  //   this.isAnimationEnd = false;
-  //   if (this.currentPosition < this.maxPosition - 1) {
-  //     this.currentPosition += 1;
-  //     this.sliderElement.style.transform = `translateX(-${
-  //       this.currentPosition * this.slideWidth
-  //     }px)`;
-  //   } else {
-  //     this.renderer.addClass(this.sliderElement, '_no-transition');
-  //     this.sliderElement.style.transform = `translateX(0)`;
-  //     setTimeout(() => {
-  //       this.currentPosition = 1;
-  //       this.renderer.removeClass(this.sliderElement, '_no-transition');
-  //       this.sliderElement.style.transform = `translateX(-${
-  //         this.currentPosition * this.slideWidth
-  //       }px)`;
-  //     }, 10);
-  //   }
-  // }
+  sliderItems: TestimonialsSliderItemModel[] = [
+    {
+      imgSrc: '/assets/images/avatars/user-01.jpg',
+      name: 'Tim Cook',
+      position: 'CEO, Apple',
+      text: `Molestiae incidunt consequatur quis ipsa autem nam sit enim magni. Voluptas tempore rem.
+Explicabo a quaerat sint autem dolore ducimus ut consequatur neque.  Nisi dolores quaerat fuga rem nihil nostrum.
+Laudantium quia consequatur molestias delectus culpa.`,
+    },
+    {
+      imgSrc: '/assets/images/avatars/user-02.jpg',
+      name: 'Sundar Pichai',
+      position: 'CEO, Google',
+      text: `Excepturi nam cupiditate culpa doloremque deleniti repellat. Veniam quos repellat voluptas animi adipisci.
+Nisi eaque consequatur. Voluptatem dignissimos ut ducimus accusantium perspiciatis.
+Quasi voluptas eius distinctio. Atque eos maxime.`,
+    },
+    {
+      imgSrc: '/assets/images/avatars/user-03.jpg',
+      name: 'CEO, Microsoft',
+      position: 'CEO, Microsoft',
+      text: `Repellat dignissimos libero. Qui sed at corrupti expedita voluptas odit. Nihil ea quia nesciunt. Ducimus aut sed ipsam.
+Autem eaque officia cum exercitationem sunt voluptatum accusamus. Quasi voluptas eius distinctio.
+Voluptatem dignissimos ut.`,
+    },
+    {
+      imgSrc: '/assets/images/avatars/user-01.jpg',
+      name: 'Tim Cook',
+      position: 'CEO, Apple',
+      text: `Molestiae incidunt consequatur quis ipsa autem nam sit enim magni. Voluptas tempore rem.
+Explicabo a quaerat sint autem dolore ducimus ut consequatur neque.  Nisi dolores quaerat fuga rem nihil nostrum.
+Laudantium quia consequatur molestias delectus culpa.`,
+    },
+  ];
 }

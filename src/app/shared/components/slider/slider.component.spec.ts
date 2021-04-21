@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { SharedTestingModule } from '@shared/shared.testing.module';
 
 import { SliderComponent } from './slider.component';
 
@@ -7,10 +8,9 @@ describe('SliderComponent', () => {
   let fixture: ComponentFixture<SliderComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ SliderComponent ]
-    })
-    .compileComponents();
+    await TestBed.configureTestingModule(
+      SharedTestingModule
+    ).compileComponents();
   });
 
   beforeEach(() => {

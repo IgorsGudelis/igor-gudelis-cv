@@ -1,5 +1,70 @@
+@import "colors";
+@import "mixins";
+@import "text";
 @import "vars";
 
 .testimonials {
-  height: 1000px; //TODO remove after adding content
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1000px;
+  position: relative;
+  background-image: url("/assets/images/testimonials-bg.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: $color-gray-19;
+    opacity: 0.8;
+  }
+}
+
+.testimonials__slider {
+  width: 100%;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.testimonials__slider-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonials__slider-item-header {
+  display: flex;
+}
+
+.testimonials__slider-item-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+}
+
+.testimonials__slider--item-info {
+  margin-left: 32px;
+}
+
+.testimonials__slider-item-name {
+  font-weight: bold;
+  color: $color-white;
+}
+
+.testimonials__slider-item-position {
+  margin-top: 8px;
+  color: $color-white-100-50;
+}
+
+.testimonials__slider-item-text {
+  margin-top: 24px;
+  color: $color-white-100-80;
 }

@@ -1,5 +1,26 @@
 <div class="testimonials">
-  <p>testimonials works!</p>
-
-  <app-slider></app-slider>
+  <app-slider
+    class="testimonials__slider"
+    [items]="sliderItems"
+    [itemTmpl]="sliderItemTmpl"
+  ></app-slider>
 </div>
+
+<ng-template #sliderItemTmpl let-item="item">
+  <div class="testimonials__slider-item">
+    <div class="testimonials__slider-item-header">
+      <img class="testimonials__slider-item-img" [src]="item.imgSrc" alt="" />
+      <div class="testimonials__slider--item-info">
+        <p class="testimonials__slider-item-name">
+          {{ item.name }}
+        </p>
+        <p class="testimonials__slider-item-position">
+          {{ item.position }}
+        </p>
+      </div>
+    </div>
+    <p class="testimonials__slider-item-text">
+      {{ item.text }}
+    </p>
+  </div>
+</ng-template>

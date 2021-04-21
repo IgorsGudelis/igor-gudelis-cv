@@ -99,6 +99,11 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.scrollTo(this.aboutElement);
         break;
       }
+
+      case this.sectionIds.testimonials: {
+        this.scrollTo(this.testimonialsElement);
+        break;
+      }
     }
   }
 

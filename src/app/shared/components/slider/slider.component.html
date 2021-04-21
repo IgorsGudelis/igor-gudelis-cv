@@ -1,42 +1,29 @@
 <div class="slider-container">
   <div class="slider">
-    <div class="slider-list" #sliderList>
-      <div class="slider-item">
+    <div class="slider__list" #sliderList>
+      <div
+        class="slider__item"
+        [style.--item-width]="slideWidth + 'px'"
+        *ngFor="let item of items"
+      >
         <img
-          class="slider-img"
-          src="/assets/images/avatars/user-01.jpg"
+          class="slider__img"
+          *ngIf="!itemTmpl; else itemCustomTmpl"
+          [src]="item.imgSrc"
           alt=""
         />
-      </div>
 
-      <div class="slider-item">
-        <img
-          class="slider-img"
-          src="/assets/images/avatars/user-02.jpg"
-          alt=""
-        />
-      </div>
-
-      <div class="slider-item">
-        <img
-          class="slider-img"
-          src="/assets/images/avatars/user-03.jpg"
-          alt=""
-        />
-      </div>
-
-      <div class="slider-item">
-        <img
-          class="slider-img"
-          src="/assets/images/avatars/user-01.jpg"
-          alt=""
-        />
+        <ng-template #itemCustomTmpl>
+          <ng-container
+            *ngTemplateOutlet="itemTmpl; context: { item: item }"
+          ></ng-container>
+        </ng-template>
       </div>
     </div>
   </div>
 
-  <div class="slider-actions">
-    <button class="slider-btn _prev" (click)="onClickPrev()">Prev</button>
-    <button class="slider-btn _next" (click)="onClickNext()">Next</button>
+  <div class="slider__actions">
+    <button class="slider__btn _prev" (click)="onClickPrev()">Prev</button>
+    <button class="slider__btn _next" (click)="onClickNext()">Next</button>
   </div>
 </div>
