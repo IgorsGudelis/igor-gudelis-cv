@@ -23,19 +23,25 @@
   </div>
 
   <div class="slider__actions">
-    <button class="slider__btn _icon-only _rounded" type="button">
+    <button
+      class="slider__btn _icon-only _rounded"
+      type="button"
+      (click)="onClickPrev()"
+    >
       <app-svg-icon
         class="slider__actions-icon"
         icon="arrow-left"
-        (click)="onClickPrev()"
       ></app-svg-icon>
     </button>
 
-    <button class="slider__btn _icon-only _rounded" type="button">
+    <button
+      class="slider__btn _icon-only _rounded"
+      type="button"
+      (click)="onClickNext()"
+    >
       <app-svg-icon
         class="slider__actions-icon"
         icon="arrow-right"
-        (click)="onClickNext()"
       ></app-svg-icon>
     </button>
   </div>
