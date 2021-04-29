@@ -5,9 +5,11 @@ import {
   Component,
   ElementRef,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Renderer2,
+  SimpleChanges,
   TemplateRef,
   ViewChild
 } from '@angular/core';
@@ -23,17 +25,18 @@ import { tap } from 'rxjs/operators';
   styleUrls: ['./slider.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SliderComponent implements OnInit, AfterViewInit, OnDestroy {
+export class SliderComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
   @ViewChild('sliderList') sliderListRef!: ElementRef;
 
-  @Input() itemsCount = 1;
+  @Input() itemsOnScreen = 1;
   @Input() itemTmpl!: TemplateRef<HTMLElement>;
-  @Input() items!: SliderItemBaseModel[];
+  @Input() items: SliderItemBaseModel[] = [];
 
   slideWidth!: number;
   private currentPosition = 0;
   private isAnimationEnd = true;
-  private minOutsidePosition!: number;
+  private itemsDefault!: SliderItemBaseModel[];
+  private lastPosition!: number;
   private sliderAnimationListener!: () => void;
 
   private get sliderElement(): HTMLElement {
@@ -46,6 +49,14 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy {
     private renderer: Renderer2,
     private screenService: ScreenService
   ) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.items) {
+      this.itemsDefault = changes.items.currentValue;
+    }
+
+    this.setSliderItems();
+  }
 
   ngOnInit(): void {
     this.onScreenInnerWidthChange();
@@ -68,11 +79,9 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isAnimationEnd = false;
 
     if (this.currentPosition < 0) {
-      this.currentPosition = this.minOutsidePosition - 1;
+      this.currentPosition = this.lastPosition;
       this.renderer.addClass(this.sliderElement, '_no-transition');
-      this.sliderElement.style.transform = `translateX(-${
-        this.currentPosition * this.slideWidth
-      }px)`;
+      this.sliderTranslateByCurrentPosition();
       this.currentPosition -= 1;
     }
 
@@ -91,11 +100,9 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.isAnimationEnd = false;
 
-    if (this.currentPosition < this.minOutsidePosition - 1) {
+    if (this.currentPosition < this.lastPosition) {
       this.currentPosition += 1;
-      this.sliderElement.style.transform = `translateX(-${
-        this.currentPosition * this.slideWidth
-      }px)`;
+      this.sliderTranslateByCurrentPosition();
     } else {
       this.renderer.addClass(this.sliderElement, '_no-transition');
       this.sliderElement.style.transform = `translateX(0)`;
@@ -103,9 +110,7 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy {
       setTimeout(() => {
         this.currentPosition = 1;
         this.renderer.removeClass(this.sliderElement, '_no-transition');
-        this.sliderElement.style.transform = `translateX(-${
-          this.currentPosition * this.slideWidth
-        }px)`;
+        this.sliderTranslateByCurrentPosition();
       }, 10);
     }
   }
@@ -114,7 +119,8 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.screenService.screenInnerWidth$
       .pipe(
         tap(() => {
-          this.slideWidth = this.hostRef?.nativeElement.offsetWidth;
+          this.slideWidth = this.hostRef?.nativeElement.offsetWidth / this.itemsOnScreen;
+          this.sliderTranslateByCurrentPosition();
           this.cdr.markForCheck();
         }),
         untilDestroyed(this)
@@ -123,8 +129,11 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private setInitialValues(): void {
-    this.minOutsidePosition = this.items?.length;
-    this.slideWidth = this.hostRef?.nativeElement.offsetWidth;
+    this.slideWidth = this.hostRef?.nativeElement.offsetWidth / this.itemsOnScreen;
+    this.lastPosition =
+      this.itemsOnScreen === 1
+        ? this.items.length - 1
+        : Math.ceil(this.items.length / this.itemsOnScreen);
     this.sliderAnimationListener = this.renderer.listen(
       this.sliderElement,
       'transitionend',
@@ -132,6 +141,23 @@ export class SliderComponent implements OnInit, AfterViewInit, OnDestroy {
         this.isAnimationEnd = true;
       }
     );
-    this.cdr.markForCheck();
+    this.cdr.detectChanges();
+  }
+
+  private setSliderItems(): void {
+    const index =
+      this.itemsOnScreen > 1
+        ? Math.ceil(this.itemsDefault.length / this.itemsOnScreen)
+        : 1;
+    const clones = this.itemsDefault.slice(0, index);
+
+    this.items = [];
+    this.items = [...this.itemsDefault, ...clones];
+  }
+
+  private sliderTranslateByCurrentPosition(): void {
+    this.sliderElement.style.transform = `translateX(-${
+      this.currentPosition * this.slideWidth
+    }px)`;
   }
 }

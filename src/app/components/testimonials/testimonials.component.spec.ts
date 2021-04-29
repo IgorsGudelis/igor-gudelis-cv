@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AppTestingModule } from '../../app.testing.module';
 import { TestimonialsComponent } from './testimonials.component';
 
 describe('TestimonialsComponent', () => {
@@ -7,10 +8,7 @@ describe('TestimonialsComponent', () => {
   let fixture: ComponentFixture<TestimonialsComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ TestimonialsComponent ]
-    })
-    .compileComponents();
+    await TestBed.configureTestingModule(AppTestingModule).compileComponents();
   });
 
   beforeEach(() => {

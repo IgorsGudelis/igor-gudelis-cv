@@ -8,9 +8,7 @@ describe('SliderComponent', () => {
   let fixture: ComponentFixture<SliderComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule(
-      SharedTestingModule
-    ).compileComponents();
+    await TestBed.configureTestingModule(SharedTestingModule).compileComponents();
   });
 
   beforeEach(() => {

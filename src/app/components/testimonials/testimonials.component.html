@@ -2,6 +2,7 @@
   <app-slider
     class="testimonials__slider"
     [items]="sliderItems"
+    [itemsOnScreen]="screenService.screen === ScreenWidth.MOBILE ? 1 : 2"
     [itemTmpl]="sliderItemTmpl"
   ></app-slider>
 </div>
