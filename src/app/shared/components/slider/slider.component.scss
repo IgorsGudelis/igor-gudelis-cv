@@ -1,3 +1,4 @@
+@import "colors";
 @import "vars";
 
 :host {
@@ -28,6 +29,8 @@
 .slider__item {
   flex-shrink: 0;
   width: var(--item-width);
+  padding-left: 80px;
+  padding-right: 80px;
   transition: transform $transition-data;
 }
 
@@ -42,12 +45,31 @@
   align-items: center;
   width: 100%;
   position: absolute;
-  bottom: -64px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .slider__btn {
   width: 64px;
+  height: 64px;
+  border: none;
+  color: $color-white;
+  background-color: $color-black-100-50;
+  transition: color $transition-data, background-color $transition-data;
   cursor: pointer;
+
+  &:hover {
+    color: $color-white-100-50;
+    background-color: $color-black-100-30;
+  }
+
+  &._icon-only {
+    padding: 16px;
+  }
+
+  &._rounded {
+    border-radius: 50%;
+  }
 }
