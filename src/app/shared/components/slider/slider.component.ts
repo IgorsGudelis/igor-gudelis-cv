@@ -104,7 +104,7 @@ export class SliderComponent implements OnChanges, OnInit, AfterViewInit, OnDest
       this.sliderElement.style.transform = `translateX(-${
         this.currentPosition > 0 ? this.currentPosition * this.slideWidth : 0
       }px)`;
-    }, 10);
+    }, 50);
   }
 
   onClickNext(): void {
@@ -125,7 +125,7 @@ export class SliderComponent implements OnChanges, OnInit, AfterViewInit, OnDest
       setTimeout(() => {
         this.renderer.removeClass(this.sliderElement, '_no-transition');
         this.sliderTranslateByCurrentPosition();
-      }, 10);
+      }, 50);
     }
   }
 
