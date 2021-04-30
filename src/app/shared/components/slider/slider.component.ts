@@ -32,10 +32,11 @@ export class SliderComponent implements OnChanges, OnInit, AfterViewInit, OnDest
   @Input() itemTmpl!: TemplateRef<HTMLElement>;
   @Input() items: SliderItemBaseModel[] = [];
 
+  currentBulletPosition = 0;
+  currentPosition = 0;
+  itemsDefault!: SliderItemBaseModel[];
   slideWidth!: number;
-  private currentPosition = 0;
   private isAnimationEnd = true;
-  private itemsDefault!: SliderItemBaseModel[];
   private lastPosition!: number;
   private sliderAnimationListener!: () => void;
 
@@ -70,6 +71,17 @@ export class SliderComponent implements OnChanges, OnInit, AfterViewInit, OnDest
     this.sliderAnimationListener();
   }
 
+  onBulletClick(index: number): void {
+    if (!this.isAnimationEnd) {
+      return;
+    }
+
+    this.currentBulletPosition = index;
+    this.currentPosition = index;
+    this.isAnimationEnd = false;
+    this.sliderTranslateByCurrentPosition();
+  }
+
   onClickPrev(): void {
     if (!this.isAnimationEnd) {
       return;
@@ -83,7 +95,10 @@ export class SliderComponent implements OnChanges, OnInit, AfterViewInit, OnDest
       this.renderer.addClass(this.sliderElement, '_no-transition');
       this.sliderTranslateByCurrentPosition();
       this.currentPosition -= 1;
+      this.currentBulletPosition -= 1;
     }
+
+    this.currentBulletPosition = this.currentPosition;
 
     setTimeout(() => {
       this.renderer.removeClass(this.sliderElement, '_no-transition');
@@ -104,14 +119,20 @@ export class SliderComponent implements OnChanges, OnInit, AfterViewInit, OnDest
       this.currentPosition += 1;
       this.sliderTranslateByCurrentPosition();
     } else {
+      this.currentPosition = 1;
       this.renderer.addClass(this.sliderElement, '_no-transition');
       this.sliderElement.style.transform = `translateX(0)`;
 
       setTimeout(() => {
-        this.currentPosition = 1;
         this.renderer.removeClass(this.sliderElement, '_no-transition');
         this.sliderTranslateByCurrentPosition();
       }, 10);
+    }
+
+    this.currentBulletPosition = this.currentPosition;
+
+    if (this.currentBulletPosition === this.lastPosition) {
+      this.currentBulletPosition = 0;
     }
   }
 

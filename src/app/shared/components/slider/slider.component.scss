@@ -59,10 +59,18 @@
   background-color: $color-black-100-50;
   transition: color $transition-data, background-color $transition-data;
   cursor: pointer;
+  outline: none;
 
-  &:hover {
-    color: $color-white-100-50;
-    background-color: $color-black-100-30;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: $color-white-100-50;
+      background-color: $color-black-100-30;
+    }
+
+    &:active {
+      color: $color-white-100-20;
+      background-color: $color-black-100-20;
+    }
   }
 
   &._icon-only {
@@ -71,5 +79,32 @@
 
   &._rounded {
     border-radius: 50%;
+  }
+}
+
+.slider__bullets {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: -100px;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+}
+
+.slider__bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: $color-gray-8;
+  transition: background-color $transition-data;
+  cursor: pointer;
+
+  &:not(:first-child) {
+    margin-left: 16px;
+  }
+
+  &._active {
+    background-color: $color-1;
   }
 }

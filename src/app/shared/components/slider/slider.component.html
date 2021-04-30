@@ -44,5 +44,14 @@
         icon="arrow-right"
       ></app-svg-icon>
     </button>
+
+    <div class="slider__bullets">
+      <span
+        class="slider__bullet"
+        [class._active]="i === currentBulletPosition"
+        *ngFor="let item of itemsDefault; index as i"
+        (click)="onBulletClick(i)"
+      ></span>
+    </div>
   </div>
 </div>
