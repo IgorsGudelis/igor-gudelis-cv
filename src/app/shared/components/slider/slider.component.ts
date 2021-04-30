@@ -32,13 +32,16 @@ export class SliderComponent implements OnChanges, OnInit, AfterViewInit, OnDest
   @Input() itemTmpl!: TemplateRef<HTMLElement>;
   @Input() items: SliderItemBaseModel[] = [];
 
-  currentBulletPosition = 0;
   currentPosition = 0;
   itemsDefault!: SliderItemBaseModel[];
   slideWidth!: number;
   private isAnimationEnd = true;
   private lastPosition!: number;
   private sliderAnimationListener!: () => void;
+
+  get activeBulletPosition(): number {
+    return this.currentPosition !== this.lastPosition ? this.currentPosition : 0;
+  }
 
   private get sliderElement(): HTMLElement {
     return this.sliderListRef.nativeElement;
@@ -76,7 +79,6 @@ export class SliderComponent implements OnChanges, OnInit, AfterViewInit, OnDest
       return;
     }
 
-    this.currentBulletPosition = index;
     this.currentPosition = index;
     this.isAnimationEnd = false;
     this.sliderTranslateByCurrentPosition();
@@ -95,10 +97,7 @@ export class SliderComponent implements OnChanges, OnInit, AfterViewInit, OnDest
       this.renderer.addClass(this.sliderElement, '_no-transition');
       this.sliderTranslateByCurrentPosition();
       this.currentPosition -= 1;
-      this.currentBulletPosition -= 1;
     }
-
-    this.currentBulletPosition = this.currentPosition;
 
     setTimeout(() => {
       this.renderer.removeClass(this.sliderElement, '_no-transition');
@@ -127,12 +126,6 @@ export class SliderComponent implements OnChanges, OnInit, AfterViewInit, OnDest
         this.renderer.removeClass(this.sliderElement, '_no-transition');
         this.sliderTranslateByCurrentPosition();
       }, 10);
-    }
-
-    this.currentBulletPosition = this.currentPosition;
-
-    if (this.currentBulletPosition === this.lastPosition) {
-      this.currentBulletPosition = 0;
     }
   }
 

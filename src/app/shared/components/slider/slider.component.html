@@ -48,7 +48,7 @@
     <div class="slider__bullets">
       <span
         class="slider__bullet"
-        [class._active]="i === currentBulletPosition"
+        [class._active]="i === activeBulletPosition"
         *ngFor="let item of itemsDefault; index as i"
         (click)="onBulletClick(i)"
       ></span>
