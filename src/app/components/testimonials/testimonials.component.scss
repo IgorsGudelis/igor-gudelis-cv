@@ -5,9 +5,9 @@
 
 .testimonials {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 1000px;
   position: relative;
   padding-left: 16px;
   padding-right: 16px;
@@ -15,6 +15,18 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+
+  @include respond-to($small) {
+    height: 900px;
+  }
+
+  @include respond-to($medium) {
+    height: 820px;
+  }
+
+  @include respond-to($large) {
+    height: 820px;
+  }
 
   &::before {
     content: "";
@@ -28,9 +40,27 @@
   }
 }
 
+.testimonials__title {
+  @include h5;
+
+  width: 100%;
+  position: relative;
+  color: $color-white;
+  text-align: center;
+
+  @include respond-to($medium) {
+    @include h4;
+  }
+
+  @include respond-to($large) {
+    @include h4;
+  }
+}
+
 .testimonials__slider {
   width: 100%;
   max-width: 1080px;
+  margin-top: 80px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -51,12 +81,9 @@
 }
 
 .testimonials__slider-item-img {
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-
-  @include respond-to($small) {
-    width: 56px;
-    height: 56px;
-  }
 
   @include respond-to($medium) {
     width: 64px;
