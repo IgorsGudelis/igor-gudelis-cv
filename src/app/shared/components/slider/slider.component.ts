@@ -14,6 +14,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { ScreenWidth } from '@shared/enums';
 import { SliderItemBaseModel } from '@shared/models';
 import { ScreenService } from '@shared/services';
 import { tap } from 'rxjs/operators';
@@ -34,6 +35,7 @@ export class SliderComponent implements OnChanges, OnInit, AfterViewInit, OnDest
 
   currentPosition = 0;
   itemsDefault!: SliderItemBaseModel[];
+  ScreenWidth = ScreenWidth;
   slideWidth!: number;
   private isAnimationEnd = true;
   private lastPosition!: number;
@@ -48,10 +50,10 @@ export class SliderComponent implements OnChanges, OnInit, AfterViewInit, OnDest
   }
 
   constructor(
+    public screenService: ScreenService,
     private cdr: ChangeDetectorRef,
     private hostRef: ElementRef,
-    private renderer: Renderer2,
-    private screenService: ScreenService
+    private renderer: Renderer2
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -75,7 +77,7 @@ export class SliderComponent implements OnChanges, OnInit, AfterViewInit, OnDest
   }
 
   onBulletClick(index: number): void {
-    if (!this.isAnimationEnd) {
+    if (!this.isAnimationEnd || this.currentPosition === index) {
       return;
     }
 
