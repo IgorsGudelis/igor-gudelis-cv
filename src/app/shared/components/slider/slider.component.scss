@@ -9,6 +9,16 @@
 .slider-container {
   width: 100%;
   position: relative;
+
+  @include respond-to($medium) {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+
+  @include respond-to($large) {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
 }
 
 .slider {
@@ -34,13 +44,13 @@
   transition: transform $transition-data;
 
   @include respond-to($medium) {
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   @include respond-to($large) {
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 }
 

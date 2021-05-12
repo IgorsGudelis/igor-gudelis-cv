@@ -27,6 +27,7 @@ import { tap } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SliderComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('slider') sliderRef!: ElementRef;
   @ViewChild('sliderList') sliderListRef!: ElementRef;
 
   @Input() itemsOnScreen = 1;
@@ -52,7 +53,6 @@ export class SliderComponent implements OnChanges, OnInit, AfterViewInit, OnDest
   constructor(
     public screenService: ScreenService,
     private cdr: ChangeDetectorRef,
-    private hostRef: ElementRef,
     private renderer: Renderer2
   ) {}
 
@@ -135,7 +135,8 @@ export class SliderComponent implements OnChanges, OnInit, AfterViewInit, OnDest
     this.screenService.screenInnerWidth$
       .pipe(
         tap(() => {
-          this.slideWidth = this.hostRef?.nativeElement.offsetWidth / this.itemsOnScreen;
+          this.slideWidth =
+            this.sliderRef?.nativeElement.offsetWidth / this.itemsOnScreen;
           this.sliderTranslateByCurrentPosition();
           this.cdr.markForCheck();
         }),
@@ -145,7 +146,7 @@ export class SliderComponent implements OnChanges, OnInit, AfterViewInit, OnDest
   }
 
   private setInitialValues(): void {
-    this.slideWidth = this.hostRef?.nativeElement.offsetWidth / this.itemsOnScreen;
+    this.slideWidth = this.sliderRef?.nativeElement.offsetWidth / this.itemsOnScreen;
     this.lastPosition =
       this.itemsOnScreen === 1
         ? this.items.length - 1
