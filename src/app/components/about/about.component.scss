@@ -5,16 +5,20 @@
 
 .about {
   padding-top: 140px;
+  padding-bottom: 140px;
   background-color: $color-gray-17;
-  min-height: 1000px; // TODO: Remove after Testing scroll
 
   @include respond-to($medium) {
     padding-top: 192px;
   }
+}
 
-  @include respond-to($large) {
-    padding-top: 192px;
-  }
+.about__content {
+  flex-direction: column;
+}
+
+.about__info-wrapper {
+  display: flex;
 }
 
 .about__ava {
@@ -54,10 +58,6 @@
   @include respond-to($medium) {
     @include h4;
   }
-
-  @include respond-to($large) {
-    @include h4;
-  }
 }
 
 .about__description {
@@ -69,8 +69,85 @@
   @include respond-to($medium) {
     @include p2;
   }
+}
+
+.about__contacts {
+  display: flex;
+  position: relative;
+  margin-top: 64px;
+  padding-top: 64px;
+
+  @include respond-to($small) {
+    flex-direction: column;
+  }
+
+  @include respond-to($medium) {
+    justify-content: space-between;
+    margin-left: 180px;
+  }
 
   @include respond-to($large) {
+    justify-content: flex-start;
+    margin-left: 270px;
+  }
+
+  &::before {
+    content: "";
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: $color-gray-16;
+  }
+}
+
+.about__contacts-details {
+  display: grid;
+}
+
+.about__contacts-title {
+  @include h5;
+
+  margin-bottom: 16px;
+  color: $color-white;
+
+  @include respond-to($medium) {
+    @include h4;
+  }
+}
+
+.about__contacts-text {
+  @include label1;
+
+  color: $color-white-100-50;
+  transition: color $transition-data;
+
+  @include respond-to($medium) {
     @include p2;
+  }
+
+  &._link {
+    &:hover {
+      color: $color-white;
+    }
+
+    &:active {
+      color: $color-white-100-80;
+    }
+  }
+}
+
+.about__cv-btn {
+  padding-left: 36px;
+  padding-right: 36px;
+
+  @include respond-to($small) {
+    margin-top: 44px;
+  }
+
+  @include respond-to($large) {
+    margin-left: 120px;
   }
 }

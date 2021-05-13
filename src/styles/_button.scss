@@ -1,0 +1,88 @@
+@import "colors";
+@import "mixins";
+@import "text";
+@import "vars";
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  height: 64px;
+  border-radius: 6px;
+  letter-spacing: 4.375px;
+  text-transform: uppercase;
+  transition: color $transition-data, background-color $transition-data;
+
+  @include respond-to($small) {
+    width: 100%;
+  }
+
+  &._white {
+    color: $color-black;
+    background-color: $color-white;
+  }
+}
+
+.btn__icon {
+  width: 20px;
+  height: 20px;
+}
+
+.btn__text {
+  font-weight: bold;
+
+  @include respond-to($small) {
+    @include label3;
+  }
+
+  @include respond-to($medium) {
+    @include label2;
+  }
+
+  @include respond-to($large) {
+    @include label2;
+  }
+}
+
+.btn {
+  &._white {
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: $color-white;
+        background-color: $color-2;
+      }
+
+      &:active {
+        color: $color-white-100-80;
+        background-color: $color-2-light;
+      }
+    }
+  }
+
+  &._white & {
+    &__icon {
+      color: $color-black;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &._white:hover & {
+      &__icon {
+        color: $color-white;
+      }
+    }
+
+    &._white:active & {
+      &__icon {
+        color: $color-white-100-80;
+      }
+    }
+  }
+
+  &._with-icon & {
+    &__text {
+      margin-left: 16px;
+    }
+  }
+}
