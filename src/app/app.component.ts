@@ -26,14 +26,10 @@ import { ScreenService } from '@shared/services';
   styleUrls: ['./app.component.scss'],
   animations: [
     trigger('hidePreloaderOverlay', [
-      transition(':leave', [
-        animate('800ms 450ms ease-in-out', style({ opacity: 0 })),
-      ]),
+      transition(':leave', [animate('800ms 450ms ease-in-out', style({ opacity: 0 }))]),
     ]),
     trigger('hidePreloaderCircle', [
-      transition(':leave', [
-        animate('450ms ease-in-out', style({ opacity: 0 })),
-      ]),
+      transition(':leave', [animate('450ms ease-in-out', style({ opacity: 0 }))]),
     ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -41,6 +37,7 @@ import { ScreenService } from '@shared/services';
 export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('about', { read: ElementRef }) aboutRef!: ElementRef;
   @ViewChild('home', { read: ElementRef }) homeRef!: ElementRef;
+  @ViewChild('resume', { read: ElementRef }) resumeRef!: ElementRef;
   @ViewChild('testimonials', { read: ElementRef }) testimonialsRef!: ElementRef;
 
   isLoading = true;
@@ -50,6 +47,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   sectionIds = {
     about: 'about',
     home: 'home',
+    resume: 'resume',
     testimonials: 'testimonials',
   };
 
@@ -61,14 +59,15 @@ export class AppComponent implements OnInit, AfterViewInit {
     return this.homeRef.nativeElement;
   }
 
+  private get resumeElement(): HTMLElement {
+    return this.resumeRef.nativeElement;
+  }
+
   private get testimonialsElement(): HTMLElement {
     return this.testimonialsRef.nativeElement;
   }
 
-  constructor(
-    private cdr: ChangeDetectorRef,
-    private screenService: ScreenService
-  ) {}
+  constructor(private cdr: ChangeDetectorRef, private screenService: ScreenService) {}
 
   ngOnInit(): void {
     this.onReadyStateComplete();
@@ -100,6 +99,11 @@ export class AppComponent implements OnInit, AfterViewInit {
         break;
       }
 
+      case this.sectionIds.resume: {
+        this.scrollTo(this.resumeElement);
+        break;
+      }
+
       case this.sectionIds.testimonials: {
         this.scrollTo(this.testimonialsElement);
         break;
@@ -125,6 +129,10 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.onSectionIntercept(this.sectionIds.about),
       options
     );
+    const observerResume = new IntersectionObserver(
+      this.onSectionIntercept(this.sectionIds.resume),
+      options
+    );
     const observerTestimonials = new IntersectionObserver(
       this.onSectionIntercept(this.sectionIds.testimonials),
       options
@@ -132,6 +140,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     observerHome.observe(this.homeElement);
     observerAbout.observe(this.aboutElement);
+    observerResume.observe(this.resumeElement);
     observerTestimonials.observe(this.testimonialsElement);
   }
 
@@ -153,9 +162,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       });
   }
 
-  private onSectionIntercept(
-    navLink: string
-  ): (entries: any, observer: any) => void {
+  private onSectionIntercept(navLink: string): (entries: any, observer: any) => void {
     return (entries: any, observer: any) => {
       if (entries[0].isIntersecting) {
         this.onChangeNavActive(navLink);

@@ -1,5 +1,6 @@
 import { ViewportScroller } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -22,6 +23,7 @@ import { NavItemModel } from '../../models';
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss'],
   animations: [showHideTopToBottomAnimation],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationComponent implements OnInit {
   @Input() navItems: NavItemModel[] = [];
@@ -51,8 +53,7 @@ export class NavigationComponent implements OnInit {
     const scrollTop = this.viewPortScroller.getScrollPosition()[1];
 
     this.isNavFixed =
-      this.screenService.screen !== ScreenWidth.MOBILE &&
-      scrollTop >= this.offsetToFixed;
+      this.screenService.screen !== ScreenWidth.MOBILE && scrollTop >= this.offsetToFixed;
   }
 
   onNavClick(link: string): void {
