@@ -21,6 +21,12 @@
   display: flex;
 }
 
+.about__ava-wrapper {
+  @include respond-to($medium) {
+    width: 25%;
+  }
+}
+
 .about__ava {
   flex-shrink: 0;
   border-radius: 50%;
@@ -41,12 +47,10 @@
 }
 
 .about__info {
-  @include respond-to($medium) {
-    margin-left: 52px;
-  }
+  width: 100%;
 
-  @include respond-to($large) {
-    margin-left: 110px;
+  @include respond-to($medium) {
+    width: 75%;
   }
 }
 
@@ -73,6 +77,7 @@
 
 .about__contacts {
   display: flex;
+  width: 100%;
   position: relative;
   margin-top: 64px;
   padding-top: 64px;
@@ -83,12 +88,12 @@
 
   @include respond-to($medium) {
     justify-content: space-between;
-    margin-left: 180px;
+    width: 75%;
+    margin-left: auto;
   }
 
   @include respond-to($large) {
     justify-content: flex-start;
-    margin-left: 270px;
   }
 
   &::before {

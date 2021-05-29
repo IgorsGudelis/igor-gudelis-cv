@@ -1,12 +1,12 @@
 <section class="about">
   <div class="about__content row">
     <div class="about__info-wrapper">
-      <img
-        class="about__ava"
+      <div
+        class="about__ava-wrapper"
         *ngIf="screenService.screen !== ScreenWidth.MOBILE"
-        src="/assets/images/ava.jpg"
-        alt=""
-      />
+      >
+        <img class="about__ava" src="/assets/images/ava.jpg" alt="" />
+      </div>
 
       <div class="about__info">
         <h3 class="about__title">About</h3>
