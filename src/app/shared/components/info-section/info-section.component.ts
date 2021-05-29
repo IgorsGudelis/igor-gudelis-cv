@@ -9,4 +9,5 @@ import { InfoSectionModel } from '@shared/models';
 })
 export class InfoSectionComponent {
   @Input() info!: InfoSectionModel;
+  @Input() endLine!: boolean;
 }

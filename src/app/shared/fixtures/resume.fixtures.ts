@@ -21,3 +21,25 @@ export const CAREER_INFO: InfoSectionModel = {
     },
   ],
 };
+
+export const EDUCATION_INFO: InfoSectionModel = {
+  title: 'Education',
+  items: [
+    {
+      label: 'April 2016',
+      mainLabel: 'Master in front-end development',
+      text: `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Inventore vero quidem nobis maxime dolorem aliquam quisquam eum ipsum amet. Vitae aut atque fuga dolorem.
+          Vel voluptatibus fugiat nam. Impedit aperiam nesciunt facilis! Porro architecto dicta inventore tempora ratione quia odio.`,
+      title: 'University of Life',
+    },
+    {
+      label: 'August 2015',
+      mainLabel: 'B.A. Degree in front-end development',
+      text: `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Inventore vero quidem nobis maxime dolorem aliquam quisquam eum ipsum amet. Vitae aut atque fuga dolorem.
+          Vel voluptatibus fugiat nam. Impedit aperiam nesciunt facilis! Porro architecto dicta inventore tempora ratione quia odio.`,
+      title: 'School of Cool Developers',
+    },
+  ],
+};
