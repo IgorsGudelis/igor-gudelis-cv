@@ -1,10 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit
-} from '@angular/core';
-import { InfoSectionItemModel } from '@shared/models';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { InfoSectionModel } from '@shared/models';
 
 @Component({
   selector: 'app-info-section',
@@ -12,11 +7,6 @@ import { InfoSectionItemModel } from '@shared/models';
   styleUrls: ['./info-section.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InfoSectionComponent implements OnInit {
-  @Input() items: InfoSectionItemModel[] = [];
-  @Input() title!: string;
-
-  constructor() {}
-
-  ngOnInit(): void {}
+export class InfoSectionComponent {
+  @Input() info!: InfoSectionModel;
 }

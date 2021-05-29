@@ -1,0 +1,156 @@
+@import "colors";
+@import "mixins";
+@import "text";
+@import "vars";
+
+.info-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.info-section__column-right {
+  display: flex;
+  width: 100%;
+
+  @include respond-to($small) {
+    justify-content: center;
+    margin-bottom: 72px;
+  }
+
+  @include respond-to($medium) {
+    width: 25%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  @include respond-to($large) {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+}
+
+.info-section__title {
+  width: max-content;
+  height: max-content;
+  position: relative;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+
+  @include respond-to($small) {
+    @include p3;
+
+    text-align: center;
+  }
+
+  @include respond-to($large) {
+    @include p2;
+  }
+
+  &::after {
+    content: "";
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    background-color: $color-1;
+  }
+}
+
+.info-section__column-left {
+  width: 100%;
+
+  @include respond-to($medium) {
+    width: 75%;
+  }
+}
+
+.info-section__item {
+  &:not(:first-child) {
+    margin-top: 42px;
+  }
+
+  @include respond-to($medium) {
+    &:not(:first-child) {
+      margin-top: 48px;
+    }
+  }
+}
+
+.info-section__item-title {
+  @include h5;
+
+  @include respond-to($medium) {
+    @include h4;
+  }
+}
+
+.info-section__item-info {
+  display: flex;
+  margin-top: 4px;
+
+  @include respond-to($small) {
+    flex-direction: column;
+  }
+
+  @include respond-to($medium) {
+    align-items: center;
+  }
+}
+
+.info-section__item-main-label {
+  @include label1;
+
+  font-style: italic;
+  color: $color-gray-16;
+
+  @include respond-to($medium) {
+    @include p2;
+
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      height: 5px;
+      width: 5px;
+      top: 50%;
+      right: -22px;
+      border-radius: 50%;
+      transform: translate3d(0, -50%, 0);
+      background-color: $color-black;
+    }
+  }
+}
+
+.info-section__item-label {
+  @include label2;
+
+  display: flex;
+  align-items: center;
+  color: $color-gray-7;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+
+  @include respond-to($medium) {
+    @include label1;
+
+    margin-left: 44px;
+    padding-top: 2px;
+    letter-spacing: 1.8px;
+  }
+}
+
+.info-section__item-text {
+  @include p3;
+
+  margin-top: 24px;
+  color: $color-gray-16;
+
+  @include respond-to($medium) {
+    @include p2;
+
+    margin-top: 32px;
+  }
+}

@@ -1,1 +1,19 @@
-<p>info-section works!</p>
+<div class="info-section" *ngIf="info">
+  <div class="info-section__column-right">
+    <h3 class="info-section__title">{{ info.title }}</h3>
+  </div>
+  <div class="info-section__column-left">
+    <div class="info-section__item" *ngFor="let item of info.items">
+      <h4 class="info-section__item-title">{{ item.title }}</h4>
+
+      <p class="info-section__item-info">
+        <span class="info-section__item-main-label">{{ item.mainLabel }}</span>
+        <span class="info-section__item-label">{{ item.label }}</span>
+      </p>
+
+      <p class="info-section__item-text">
+        {{ item.text }}
+      </p>
+    </div>
+  </div>
+</div>

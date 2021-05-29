@@ -1,0 +1,14 @@
+@import "colors";
+@import "mixins";
+@import "text";
+@import "vars";
+
+.resume {
+  padding-top: 110px;
+  padding-bottom: 160px;
+
+  @include respond-to($medium) {
+    padding-top: 180px;
+    padding-bottom: 180px;
+  }
+}
