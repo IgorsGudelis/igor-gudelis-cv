@@ -35,7 +35,9 @@
                 "src/styles"
               ]
             },
-            "scripts": []
+            "scripts": [
+              "node_modules/jump.js/dist/jump.js"
+            ]
           },
           "configurations": {
             "production": {

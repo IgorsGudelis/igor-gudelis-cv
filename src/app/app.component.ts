@@ -19,6 +19,7 @@ import { NAV_ITEMS } from '@shared/constants';
 import { ScreenWidth } from '@shared/enums';
 import { NavItemModel } from '@shared/models';
 import { ScreenService } from '@shared/services';
+import jump from 'jump.js';
 
 @UntilDestroy()
 @Component({
@@ -120,7 +121,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     const options = {
       root: null,
       rootMargin: '0px',
-      threshold: this.screenService.screen === ScreenWidth.MOBILE ? 0.15 : 3,
+      threshold: this.screenService.screen === ScreenWidth.MOBILE ? 0.15 : 0.3,
     };
     const observerHome = new IntersectionObserver(
       this.onSectionIntercept(this.sectionIds.home),
@@ -174,9 +175,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   private scrollTo(element: HTMLElement): void {
-    element.scrollIntoView({
-      block: 'start',
-      behavior: 'smooth',
+    jump(element, {
+      duration: 1200,
     });
   }
 }
