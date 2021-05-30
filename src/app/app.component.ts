@@ -121,7 +121,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     const options = {
       root: null,
       rootMargin: '0px',
-      threshold: this.screenService.screen === ScreenWidth.MOBILE ? 0.15 : 0.3,
+      threshold: this.screenService.screen === ScreenWidth.MOBILE ? 0.1 : 0.2,
     };
     const observerHome = new IntersectionObserver(
       this.onSectionIntercept(this.sectionIds.home),
