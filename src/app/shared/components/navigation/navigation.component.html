@@ -23,6 +23,7 @@
   <ul
     class="navigation__list _small-screen"
     *ngIf="isMenuMobileShown"
+    (touchmove)="onTouchMove($event)"
     @showHideTopToBottom
   >
     <ng-container *ngTemplateOutlet="navItemTmpl"></ng-container>

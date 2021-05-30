@@ -48,12 +48,14 @@ export class InfoProgressComponent implements AfterViewInit {
       threshold: 1,
     };
     const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        this.currentTransition = true;
-        this.cdr.markForCheck();
+      entries.forEach((v) => {
+        if (v.isIntersecting) {
+          this.currentTransition = true;
+          this.cdr.markForCheck();
 
-        observer.disconnect();
-      }
+          observer.disconnect();
+        }
+      });
     }, options);
 
     observer.observe(this.hostRef.nativeElement);

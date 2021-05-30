@@ -57,11 +57,16 @@ export class NavigationComponent implements OnInit {
   }
 
   onNavClick(link: string): void {
+    this.isMenuMobileShown = false;
     this.navigate.emit(link);
   }
 
   onToggleMenuMobile(): void {
     this.isMenuMobileShown = !this.isMenuMobileShown;
+  }
+
+  onTouchMove(e: TouchEvent): void {
+    e.preventDefault();
   }
 
   private onScreenInnerWidthChange(): void {

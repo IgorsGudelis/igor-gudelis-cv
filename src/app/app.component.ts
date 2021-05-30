@@ -16,6 +16,7 @@ import {
 } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NAV_ITEMS } from '@shared/constants';
+import { ScreenWidth } from '@shared/enums';
 import { NavItemModel } from '@shared/models';
 import { ScreenService } from '@shared/services';
 
@@ -119,7 +120,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     const options = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.3,
+      threshold: this.screenService.screen === ScreenWidth.MOBILE ? 0.15 : 3,
     };
     const observerHome = new IntersectionObserver(
       this.onSectionIntercept(this.sectionIds.home),
@@ -162,8 +163,10 @@ export class AppComponent implements OnInit, AfterViewInit {
       });
   }
 
-  private onSectionIntercept(navLink: string): (entries: any, observer: any) => void {
-    return (entries: any, observer: any) => {
+  private onSectionIntercept(
+    navLink: string
+  ): (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => void {
+    return (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
       if (entries[0].isIntersecting) {
         this.onChangeNavActive(navLink);
       }

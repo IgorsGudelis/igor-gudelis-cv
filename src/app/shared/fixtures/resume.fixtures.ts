@@ -39,7 +39,7 @@ export const EDUCATION_INFO: InfoSectionModel = {
       text: `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
           Inventore vero quidem nobis maxime dolorem aliquam quisquam eum ipsum amet. Vitae aut atque fuga dolorem.
           Vel voluptatibus fugiat nam. Impedit aperiam nesciunt facilis! Porro architecto dicta inventore tempora ratione quia odio.`,
-      title: 'School of Cool Developers',
+      title: 'W3Cx courses',
     },
   ],
 };
@@ -81,14 +81,14 @@ export const SKILLS_PROGRESS: InfoProgressModel[] = [
   },
   {
     title: 'Angular Material',
-    progress: 60,
-  },
-  {
-    title: 'RxJS',
     progress: 50,
   },
   {
-    title: 'Ngrx/Ngxs',
+    title: 'RxJS',
     progress: 60,
+  },
+  {
+    title: 'Ngrx/Ngxs',
+    progress: 55,
   },
 ];
