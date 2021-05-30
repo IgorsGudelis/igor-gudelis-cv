@@ -119,7 +119,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     const options = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.5,
+      threshold: 0.3,
     };
     const observerHome = new IntersectionObserver(
       this.onSectionIntercept(this.sectionIds.home),

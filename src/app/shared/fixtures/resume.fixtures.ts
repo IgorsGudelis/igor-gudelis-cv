@@ -1,4 +1,4 @@
-import { InfoSectionModel } from '@shared/models';
+import { InfoProgressModel, InfoSectionModel } from '@shared/models';
 
 export const CAREER_INFO: InfoSectionModel = {
   title: 'Career',
@@ -43,3 +43,52 @@ export const EDUCATION_INFO: InfoSectionModel = {
     },
   ],
 };
+
+export const SKILLS_INFO: InfoSectionModel = {
+  title: 'Skills',
+  items: [
+    {
+      label: '',
+      mainLabel: '',
+      text: `Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Inventore vero quidem nobis maxime dolorem aliquam quisquam eum ipsum amet. Vitae aut atque fuga dolorem.
+          Vel voluptatibus fugiat nam. Impedit aperiam nesciunt facilis! Porro architecto dicta inventore tempora ratione quia odio.`,
+      title: '',
+    },
+  ],
+};
+
+export const SKILLS_PROGRESS: InfoProgressModel[] = [
+  {
+    title: 'Html',
+    progress: 80,
+  },
+  {
+    title: 'CSS/SCSS',
+    progress: 80,
+  },
+  {
+    title: 'Javascript',
+    progress: 70,
+  },
+  {
+    title: 'Typescript',
+    progress: 60,
+  },
+  {
+    title: 'Angular',
+    progress: 70,
+  },
+  {
+    title: 'Angular Material',
+    progress: 60,
+  },
+  {
+    title: 'RxJS',
+    progress: 50,
+  },
+  {
+    title: 'Ngrx/Ngxs',
+    progress: 60,
+  },
+];

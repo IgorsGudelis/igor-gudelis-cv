@@ -4,11 +4,17 @@
 @import "vars";
 
 .resume {
-  padding-top: 64px;
+  padding-top: 24px;
   padding-bottom: 64px;
 
   @include respond-to($medium) {
     padding-top: 100px;
     padding-bottom: 100px;
+  }
+}
+
+.resume__skill {
+  &:not(:first-child) {
+    margin-top: 20px;
   }
 }

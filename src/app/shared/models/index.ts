@@ -1,3 +1,4 @@
+export * from './info-progress.model';
 export * from './info-section.model';
 export * from './info-section-item.model';
 export * from './nav-item.model';

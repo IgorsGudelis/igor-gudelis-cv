@@ -1,0 +1,14 @@
+<div class="info-progress" *ngIf="item">
+  <h3 class="info-progress__title">{{ item.title }}</h3>
+
+  <div class="info-progress__scale-wrapper">
+    <div
+      class="info-progress__scale _inner"
+      [@fadeInProgress]="{
+        value: currentTransition,
+        params: { progressEnd: item.progress + '%' }
+      }"
+    ></div>
+    <div class="info-progress__scale _outer"></div>
+  </div>
+</div>

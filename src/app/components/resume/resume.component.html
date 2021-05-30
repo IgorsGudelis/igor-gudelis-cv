@@ -1,6 +1,15 @@
 <section class="resume row">
   <div class="resume__content">
+    <app-info-section [info]="SKILLS_INFO" [endLine]="true">
+      <app-info-progress
+        class="resume__skill"
+        [item]="item"
+        *ngFor="let item of SKILLS_PROGRESS"
+      ></app-info-progress>
+    </app-info-section>
+
     <app-info-section [info]="CAREER_INFO" [endLine]="true"></app-info-section>
+
     <app-info-section [info]="EDUCATION_INFO"></app-info-section>
   </div>
 </section>

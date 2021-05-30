@@ -131,7 +131,7 @@
 
     position: relative;
 
-    &::after {
+    &._with-point::after {
       content: "";
       position: absolute;
       height: 5px;
@@ -173,5 +173,17 @@
     @include p2;
 
     margin-top: 32px;
+  }
+
+  &._just-text {
+    margin-top: 0;
+  }
+}
+
+.info-section__item-ng-content {
+  margin-top: 20px;
+
+  @include respond-to($medium) {
+    margin-top: 28px;
   }
 }

@@ -7,13 +7,27 @@
       <h4 class="info-section__item-title">{{ item.title }}</h4>
 
       <p class="info-section__item-info">
-        <span class="info-section__item-main-label">{{ item.mainLabel }}</span>
-        <span class="info-section__item-label">{{ item.label }}</span>
+        <span
+          class="info-section__item-main-label"
+          [class._with-point]="item.label"
+        >
+          {{ item.mainLabel }}
+        </span>
+        <span class="info-section__item-label" *ngIf="item.mainLabel">
+          {{ item.label }}
+        </span>
       </p>
 
-      <p class="info-section__item-text">
+      <p
+        class="info-section__item-text"
+        [class._just-text]="!item.title && !item.mainLabel"
+      >
         {{ item.text }}
       </p>
+
+      <div class="info-section__item-ng-content">
+        <ng-content></ng-content>
+      </div>
     </div>
   </div>
 </div>
