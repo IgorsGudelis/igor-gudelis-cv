@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "npm run sprites && ng serve",
-    "build": "npm run sprites && ng build --prod --buildOptimizer=true --progress",
+    "build": "npm run sprites && ng build --c production  --progress",
     "test": "ng test",
     "lint": "ng lint",
     "lint:scss": "stylelint --fix --allow-empty-input \"src/app/**/*.scss\"",
