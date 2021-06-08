@@ -1,0 +1,41 @@
+@import "colors";
+@import "mixins";
+@import "vars";
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.info-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  position: relative;
+}
+
+.info-social__item {
+  display: flex;
+
+  &:not(:first-child) {
+    margin-left: 24px;
+  }
+}
+
+.info-social__link {
+  width: 24px;
+  height: 24px;
+  color: $color-white;
+  transition: $transition-data;
+
+  &:hover {
+    color: $color-2;
+  }
+
+  &:active {
+    color: $color-2-lighter;
+  }
+}

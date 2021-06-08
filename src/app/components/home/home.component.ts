@@ -7,6 +7,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { showBottomToTopAnimation } from '@shared/animations';
+import { INFO_SOCIAL } from '@shared/fixtures';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +20,7 @@ export class HomeComponent implements AfterViewInit {
 
   @Input() isHomeContentVisible = false;
 
+  INFO_SOCIAL = INFO_SOCIAL;
   private isIntersecting = false;
 
   constructor(private hostRef: ElementRef) {}

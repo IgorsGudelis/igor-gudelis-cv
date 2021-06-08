@@ -1,0 +1,7 @@
+<ul class="info-social">
+  <li class="info-social__item" *ngFor="let item of items">
+    <a class="info-social__link" [href]="item.link" target="_blank">
+      <app-svg-icon class="info-social__icon" [icon]="item.icon"></app-svg-icon>
+    </a>
+  </li>
+</ul>

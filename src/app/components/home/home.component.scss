@@ -85,3 +85,20 @@
     @include p1;
   }
 }
+
+.home__info-social {
+  position: relative;
+  margin-top: 64px;
+
+  ::ng-deep .info-social {
+    &::before {
+      content: "";
+      height: 1px;
+      position: absolute;
+      top: -32px;
+      left: -24px;
+      right: -24px;
+      background-color: $color-gray-17;
+    }
+  }
+}
