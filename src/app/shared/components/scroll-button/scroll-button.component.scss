@@ -1,6 +1,10 @@
 @import "colors";
+@import "vars";
 
 .scroll-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   bottom: 80px;
   width: 64px;
@@ -11,6 +15,17 @@
   background-color: $color-black;
   cursor: pointer;
   outline: none;
+  transition: $transition-data;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: $color-1;
+    }
+
+    &:active {
+      background-color: $color-1-light;
+    }
+  }
 
   &._right {
     right: 64px;
@@ -23,4 +38,9 @@
   &._small-screen {
     bottom: 32px;
   }
+}
+
+.scroll-btn__icon {
+  width: 24px;
+  height: 24px;
 }

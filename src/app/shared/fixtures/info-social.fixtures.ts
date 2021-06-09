@@ -6,6 +6,10 @@ export const INFO_SOCIAL: InfoSocial[] = [
     link: 'https://www.linkedin.com/in/igor-gudelis-679855115',
   },
   {
+    icon: 'github',
+    link: 'https://github.com/IgorsGudelis',
+  },
+  {
     icon: 'email',
     link: 'mailto:igors.gudelis@gmail.com',
   },
