@@ -2,8 +2,10 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  EventEmitter,
   HostListener,
   Input,
+  Output,
   ViewChild
 } from '@angular/core';
 import { showBottomToTopAnimation } from '@shared/animations';
@@ -19,6 +21,7 @@ export class HomeComponent implements AfterViewInit {
   @ViewChild('homeBg') homeBgElementRef!: ElementRef<HTMLElement>;
 
   @Input() isHomeContentVisible = false;
+  @Output() scrollToSection = new EventEmitter<string>();
 
   INFO_SOCIAL = INFO_SOCIAL;
   private isIntersecting = false;
@@ -32,6 +35,10 @@ export class HomeComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.addIntersectionObserver();
+  }
+
+  public onScrollToSection(): void {
+    this.scrollToSection.emit('about');
   }
 
   private addIntersectionObserver(): void {

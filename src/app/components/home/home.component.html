@@ -22,5 +22,15 @@
       class="home__info-social"
       [items]="INFO_SOCIAL"
     ></app-info-social>
+
+    <div class="home__scroll" (click)="onScrollToSection()">
+      <div class="home__scroll-icon-wrapper">
+        <app-svg-icon
+          class="home__scroll-icon"
+          icon="arrow-bottom"
+        ></app-svg-icon>
+      </div>
+      <p class="home__scroll-text">scroll down</p>
+    </div>
   </div>
 </section>

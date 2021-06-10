@@ -51,11 +51,14 @@
 }
 
 .home__content {
+  flex-grow: 1;
+  display: flex;
   flex-direction: column;
   width: 100%;
   max-width: 800px;
   padding-left: $padding-mobile-layout;
   padding-right: $padding-mobile-layout;
+  padding-bottom: 40px;
 }
 
 .home__title,
@@ -66,6 +69,7 @@
 .home__title {
   @include h3;
 
+  margin-top: auto;
   color: $color-white;
 
   @include respond-to($medium) {
@@ -100,5 +104,67 @@
       right: -24px;
       background-color: $color-gray-17;
     }
+  }
+}
+
+.home__scroll {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  color: $color-white;
+  cursor: pointer;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      .home__scroll-text {
+        color: $color-2;
+
+        &::before {
+          width: 100%;
+        }
+      }
+    }
+
+    &:active {
+      .home__scroll-text {
+        color: $color-2-light;
+      }
+    }
+  }
+}
+
+.home__scroll-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  border: 2px solid;
+  border-radius: 50%;
+}
+
+.home__scroll-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.home__scroll-text {
+  @include label3;
+
+  position: relative;
+  margin-left: 16px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  transition: color $transition-data;
+
+  &::before {
+    content: "";
+    width: 0;
+    height: 1px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: $color-white;
+    transition: $transition-data;
   }
 }
