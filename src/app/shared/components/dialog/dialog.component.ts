@@ -1,12 +1,16 @@
-import { animate, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  AnimationEvent,
+  style,
+  transition,
+  trigger
+} from '@angular/animations';
 import {
   ChangeDetectionStrategy,
   Component,
-  HostBinding,
-  Input
+  EventEmitter,
+  Output
 } from '@angular/core';
-import { DialogInstanceModel } from '@shared/models/dialogInstance.model';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-dialog',
@@ -42,15 +46,18 @@ import { Subject } from 'rxjs';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DialogComponent implements DialogInstanceModel {
-  @Input() data!: any;
+export class DialogComponent {
+  @Output() closeDialog = new EventEmitter<void>();
 
-  @HostBinding('@dialogOpenClose') dialogVisibilityState = true;
-
-  afterClose$ = new Subject<any>();
+  dialogVisibilityState = true;
 
   onClose(): void {
     this.dialogVisibilityState = false;
-    this.afterClose$.next(this.data);
+  }
+
+  onDialogOpenCloseAnimationDone(event: AnimationEvent): void {
+    if (event.toState === 'void') {
+      this.closeDialog.emit();
+    }
   }
 }

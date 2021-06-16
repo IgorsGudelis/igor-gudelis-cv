@@ -1,4 +1,9 @@
-<div class="dialog">
+<div
+  class="dialog"
+  *ngIf="dialogVisibilityState"
+  @dialogOpenClose
+  (@dialogOpenClose.done)="onDialogOpenCloseAnimationDone($event)"
+>
   <div class="dialog__backdrop"></div>
 
   <button class="dialog__close-btn" (click)="onClose()">
