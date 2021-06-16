@@ -59,6 +59,10 @@
   padding-left: $padding-mobile-layout;
   padding-right: $padding-mobile-layout;
   padding-bottom: 40px;
+
+  @include respond-to($small) {
+    padding-bottom: 80px;
+  }
 }
 
 .home__title,

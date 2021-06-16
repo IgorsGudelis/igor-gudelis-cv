@@ -1,0 +1,12 @@
+<div class="dialog">
+  <div class="dialog__backdrop"></div>
+
+  <button class="dialog__close-btn" (click)="onClose()">
+    <app-svg-icon icon="close"></app-svg-icon>
+  </button>
+
+  <section class="dialog__content">
+    <ng-content select="[dialogHeader]"></ng-content>
+    <ng-content select="[dialogBody]"></ng-content>
+  </section>
+</div>

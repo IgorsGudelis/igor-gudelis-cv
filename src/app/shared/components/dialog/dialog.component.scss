@@ -1,0 +1,64 @@
+@import "colors";
+@import "mixins";
+@import "text";
+@import "vars";
+
+:host {
+  display: flex;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.dialog {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.dialog__backdrop {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $color-gray-18;
+}
+
+.dialog__close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  border: none;
+  color: $color-white;
+  background-color: transparent;
+  transition: color $transition-data;
+  cursor: pointer;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: $color-gray-6;
+    }
+
+    &:active {
+      color: $color-gray-8;
+    }
+  }
+}
+
+.dialog__content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 12px;
+}
