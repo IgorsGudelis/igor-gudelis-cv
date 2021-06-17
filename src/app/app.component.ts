@@ -41,6 +41,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('home', { read: ElementRef }) homeRef!: ElementRef;
   @ViewChild('resume', { read: ElementRef }) resumeRef!: ElementRef;
   @ViewChild('testimonials', { read: ElementRef }) testimonialsRef!: ElementRef;
+  @ViewChild('works', { read: ElementRef }) worksRef!: ElementRef;
 
   isLoading = true;
   isPreloaderVisible = true;
@@ -51,6 +52,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     home: 'home',
     resume: 'resume',
     testimonials: 'testimonials',
+    works: 'works',
   };
 
   private get aboutElement(): HTMLElement {
@@ -67,6 +69,10 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   private get testimonialsElement(): HTMLElement {
     return this.testimonialsRef.nativeElement;
+  }
+
+  private get worksElement(): HTMLElement {
+    return this.worksRef.nativeElement;
   }
 
   constructor(private cdr: ChangeDetectorRef, private screenService: ScreenService) {}
@@ -110,6 +116,11 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.scrollTo(this.testimonialsElement);
         break;
       }
+
+      case this.sectionIds.works: {
+        this.scrollTo(this.worksElement);
+        break;
+      }
     }
   }
 
@@ -139,11 +150,16 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.onSectionIntercept(this.sectionIds.testimonials),
       options
     );
+    const observerWorks = new IntersectionObserver(
+      this.onSectionIntercept(this.sectionIds.works),
+      options
+    );
 
     observerHome.observe(this.homeElement);
     observerAbout.observe(this.aboutElement);
     observerResume.observe(this.resumeElement);
     observerTestimonials.observe(this.testimonialsElement);
+    observerWorks.observe(this.worksElement);
   }
 
   private onChangeNavActive(navLink: string): void {

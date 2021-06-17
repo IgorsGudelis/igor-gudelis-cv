@@ -1,0 +1,20 @@
+@import "colors";
+@import "mixins";
+@import "text";
+@import "vars";
+
+.works {
+  height: 800px;
+
+  padding-top: 90px;
+  padding-bottom: 140px;
+  background-color: $color-gray-1;
+
+  @include respond-to($medium) {
+    padding-top: 192px;
+  }
+}
+
+.works__content {
+  flex-direction: column;
+}
