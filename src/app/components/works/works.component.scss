@@ -4,7 +4,6 @@
 @import "vars";
 
 .works {
-  height: 800px;
   padding-top: 90px;
   padding-bottom: 140px;
   background-color: $color-gray-1;
@@ -18,10 +17,86 @@
   flex-direction: column;
 }
 
+.works__title {
+  @include h5;
+
+  text-align: center;
+
+  @include respond-to($medium) {
+    @include h4;
+  }
+}
+
 .works__items {
+  display: grid;
   margin-top: 84px;
 
   @include respond-to($medium) {
-    padding-top: 96px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 96px;
+  }
+
+  @include respond-to($large) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.works__item-img {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  transition: transform 500ms;
+}
+
+.works__item {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: $color-black-100-80;
+    opacity: 0;
+    transition: opacity 500ms;
+  }
+
+  &::after {
+    content: ". . .";
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    font-weight: bold;
+    text-align: center;
+    color: $color-white;
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) scale(0.5);
+    transition: opacity 500ms, transform 500ms;
+  }
+
+  &:hover {
+    &::before,
+    &::after {
+      opacity: 1;
+    }
+
+    &::after {
+      transform: translate3d(-50%, -50%, 0) scale(1);
+    }
+  }
+
+  &:hover & {
+    &-img {
+      transform: scale(1.05);
+    }
   }
 }

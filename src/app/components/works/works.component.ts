@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { WorkCardDialogComponent } from '@shared/components';
+import { WORK_ITEMS } from '@shared/fixtures';
 import { DialogService } from '@shared/services';
 
 @Component({
@@ -7,10 +8,10 @@ import { DialogService } from '@shared/services';
   templateUrl: './works.component.html',
   styleUrls: ['./works.component.scss'],
 })
-export class WorksComponent implements OnInit {
-  constructor(private dialogService: DialogService) {}
+export class WorksComponent {
+  public WORK_ITEMS = WORK_ITEMS;
 
-  ngOnInit(): void {}
+  constructor(private dialogService: DialogService) {}
 
   public onOpenDialog(): void {
     this.dialogService.openDialog(WorkCardDialogComponent);
