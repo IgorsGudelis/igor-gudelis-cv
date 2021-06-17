@@ -5,7 +5,6 @@
 
 .works {
   height: 800px;
-
   padding-top: 90px;
   padding-bottom: 140px;
   background-color: $color-gray-1;
@@ -17,4 +16,12 @@
 
 .works__content {
   flex-direction: column;
+}
+
+.works__items {
+  margin-top: 84px;
+
+  @include respond-to($medium) {
+    padding-top: 96px;
+  }
 }
