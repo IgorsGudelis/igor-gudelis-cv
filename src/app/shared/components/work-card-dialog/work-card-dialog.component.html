@@ -1,6 +1,8 @@
 <app-dialog *ngIf="item" (closeDialog)="onClose()">
   <div class="work-card-dialog">
-    <img class="work-card-dialog__img" [src]="item.srcDialog" alt="" />
+    <header class="work-card-dialog__header">
+      <img class="work-card-dialog__img" [src]="item.srcDialog" />
+    </header>
 
     <div class="work-card-dialog__body">
       <h3 class="work-card-dialog__title">{{ item.title }}</h3>

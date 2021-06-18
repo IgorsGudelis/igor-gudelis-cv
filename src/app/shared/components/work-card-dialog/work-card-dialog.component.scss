@@ -6,16 +6,27 @@
 .work-card-dialog {
   width: 100%;
   max-width: 680px;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: $color-white;
+}
+
+.work-card-dialog__header {
+  flex-grow: 1;
+  min-height: 0;
+  background-color: $color-white;
 }
 
 .work-card-dialog__img {
-  max-width: 100%;
-  height: auto;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .work-card-dialog__body {
+  margin-top: auto;
   padding: 24px 16px;
   background-color: $color-white;
 
