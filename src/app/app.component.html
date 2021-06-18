@@ -1,12 +1,12 @@
-<main class="app">
-  <header class="app__header">
-    <app-navigation
-      [offsetToFixed]="offsetToNavFixed"
-      [navItems]="navItems"
-      (navigate)="onNavigate($event)"
-    ></app-navigation>
-  </header>
+<header class="app-header">
+  <app-navigation
+    [offsetToFixed]="offsetToNavFixed"
+    [navItems]="navItems"
+    (navigate)="onNavigate($event)"
+  ></app-navigation>
+</header>
 
+<main class="app">
   <app-home
     [isHomeContentVisible]="!isLoading"
     (scrollToSection)="onNavigate($event)"
