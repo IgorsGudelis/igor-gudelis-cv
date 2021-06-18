@@ -1,0 +1,71 @@
+@import "colors";
+@import "mixins";
+@import "text";
+@import "vars";
+
+.work-card-dialog {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+}
+
+.work-card-dialog__img {
+  max-width: 100%;
+  height: auto;
+}
+
+.work-card-dialog__body {
+  padding: 24px 16px;
+  background-color: $color-white;
+
+  @include respond-to($medium) {
+    padding: 24px 40px 44px;
+  }
+}
+
+.work-card-dialog__title {
+  @include p1;
+
+  font-weight: bold;
+}
+
+.work-card-dialog__text {
+  @include p3;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  word-break: break-word;
+  margin-top: 16px;
+  color: $color-gray-14;
+  overflow: hidden;
+}
+
+.work-card-dialog__label {
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+
+  @include respond-to($medium) {
+    margin-top: 32px;
+  }
+}
+
+.work-card-dialog__icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.work-card-dialog__label-text {
+  @include label1;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-break: break-word;
+  margin-left: 8px;
+  color: $color-gray-7;
+  overflow: hidden;
+}

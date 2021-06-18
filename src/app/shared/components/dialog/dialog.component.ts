@@ -43,6 +43,38 @@ import {
         }
       ),
     ]),
+    trigger('dialogContentFadeInOut', [
+      transition(
+        ':enter',
+        [
+          style({ opacity: 0, transform: 'scale(0.95)' }),
+          animate(
+            '{{duration}} ease-in-out',
+            style({ opacity: 1, transform: 'scale(1)' })
+          ),
+        ],
+        {
+          params: {
+            duration: '300ms',
+          },
+        }
+      ),
+      transition(
+        ':leave',
+        [
+          style({ opacity: 1, transform: 'scale(1)' }),
+          animate(
+            '{{duration}} ease-in-out',
+            style({ opacity: 0, transform: 'scale(0.95)' })
+          ),
+        ],
+        {
+          params: {
+            duration: '300ms',
+          },
+        }
+      ),
+    ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

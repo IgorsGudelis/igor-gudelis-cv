@@ -1,9 +1,18 @@
-<app-dialog (closeDialog)="onClose()">
-  <header dialogHeader>
-    <h3>Hello World</h3>
-  </header>
+<app-dialog *ngIf="item" (closeDialog)="onClose()">
+  <div class="work-card-dialog">
+    <img class="work-card-dialog__img" [src]="item.srcDialog" alt="" />
 
-  <div dialogBody>
-    <p>work-card-dialog works!</p>
+    <div class="work-card-dialog__body">
+      <h3 class="work-card-dialog__title">{{ item.title }}</h3>
+
+      <p class="work-card-dialog__text">
+        {{ item.text }}
+      </p>
+
+      <p class="work-card-dialog__label">
+        <app-svg-icon class="work-card-dialog__icon" icon="tag"></app-svg-icon>
+        <span class="work-card-dialog__label-text">{{ item.label }}</span>
+      </p>
+    </div>
   </div>
 </app-dialog>

@@ -1,17 +1,22 @@
-<div
-  class="dialog"
-  *ngIf="dialogVisibilityState"
-  @dialogOpenClose
-  (@dialogOpenClose.done)="onDialogOpenCloseAnimationDone($event)"
->
-  <div class="dialog__backdrop"></div>
+<div class="dialog">
+  <ng-container *ngIf="dialogVisibilityState">
+    <div
+      class="dialog__backdrop"
+      @dialogOpenClose
+      (@dialogOpenClose.done)="onDialogOpenCloseAnimationDone($event)"
+      (click)="onClose()"
+    ></div>
 
-  <button class="dialog__close-btn" (click)="onClose()">
-    <app-svg-icon icon="close"></app-svg-icon>
-  </button>
+    <button class="dialog__close-btn" @dialogOpenClose (click)="onClose()">
+      <app-svg-icon icon="close"></app-svg-icon>
+    </button>
+  </ng-container>
 
-  <section class="dialog__content">
-    <ng-content select="[dialogHeader]"></ng-content>
-    <ng-content select="[dialogBody]"></ng-content>
+  <section
+    class="dialog__content"
+    *ngIf="dialogVisibilityState"
+    @dialogContentFadeInOut
+  >
+    <ng-content></ng-content>
   </section>
 </div>

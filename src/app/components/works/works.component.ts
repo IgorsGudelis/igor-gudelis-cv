@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { WorkCardDialogComponent } from '@shared/components';
 import { WORK_ITEMS } from '@shared/fixtures';
+import { WorkItemModel } from '@shared/models';
 import { DialogService } from '@shared/services';
 
 @Component({
@@ -13,7 +14,11 @@ export class WorksComponent {
 
   constructor(private dialogService: DialogService) {}
 
-  public onOpenDialog(): void {
-    this.dialogService.openDialog(WorkCardDialogComponent);
+  public onOpenDialog(item: WorkItemModel): void {
+    const dialogRef = this.dialogService.openDialog(
+      WorkCardDialogComponent
+    ) as WorkCardDialogComponent;
+
+    dialogRef.item = item;
   }
 }
