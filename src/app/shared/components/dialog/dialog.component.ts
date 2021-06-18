@@ -49,7 +49,7 @@ import {
         [
           style({ opacity: 0, transform: 'scale(0.95)' }),
           animate(
-            '{{duration}} ease-in-out',
+            '{{duration}} 50ms ease-in-out',
             style({ opacity: 1, transform: 'scale(1)' })
           ),
         ],
