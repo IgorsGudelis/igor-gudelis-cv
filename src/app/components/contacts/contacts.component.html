@@ -1,1 +1,43 @@
-<p>contacts works!</p>
+<section class="contacts">
+  <div class="contacts__content row">
+    <h3 class="contacts__title">Say Hello</h3>
+
+    <div class="contacts__main">
+      <p class="contacts__message">
+        Have a new project in mind? Let's collaborate and build something
+        awesome. Let's turn that idea to an even greater product :)
+      </p>
+      <div class="contacts__info">
+        <div class="contacts__row">
+          <p class="contacts__label">Email</p>
+          <a
+            class="contacts__text _link"
+            href="mailto:igors.gudelis@gmail.com?subject=We are hiring"
+          >
+            igors.gudelis@gmail.com
+          </a>
+        </div>
+
+        <div class="contacts__row">
+          <p class="contacts__label">Phone</p>
+          <a class="contacts__text _link" href="tel:+375297688083"
+            >+375 29 7688083
+          </a>
+        </div>
+
+        <button
+          class="contacts__btn btn _blue-light"
+          type="button"
+          (click)="onTalk()"
+        >
+          <span class="btn__text">let's talk</span>
+        </button>
+      </div>
+    </div>
+
+    <app-info-social
+      class="contacts__social"
+      [items]="INFO_SOCIAL"
+    ></app-info-social>
+  </div>
+</section>

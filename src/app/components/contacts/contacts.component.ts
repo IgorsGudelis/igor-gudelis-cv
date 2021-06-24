@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { INFO_SOCIAL } from '@shared/fixtures';
 
 @Component({
   selector: 'app-contacts',
   templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.scss']
+  styleUrls: ['./contacts.component.scss'],
 })
-export class ContactsComponent implements OnInit {
+export class ContactsComponent {
+  INFO_SOCIAL = INFO_SOCIAL;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  onTalk(): void {
+    alert('in progress...');
   }
-
 }

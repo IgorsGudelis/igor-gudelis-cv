@@ -9,10 +9,13 @@
   justify-content: center;
   width: max-content;
   height: 64px;
+  border: none;
   border-radius: 6px;
   letter-spacing: 4.375px;
   text-transform: uppercase;
   transition: color $transition-data, background-color $transition-data;
+  cursor: pointer;
+  outline: none;
 
   @include respond-to($small) {
     width: 100%;
@@ -21,6 +24,11 @@
   &._white {
     color: $color-black;
     background-color: $color-white;
+  }
+
+  &._blue-light {
+    color: $color-white;
+    background-color: $color-1;
   }
 }
 
@@ -60,9 +68,28 @@
     }
   }
 
+  &._blue-light {
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color: $color-2;
+      }
+
+      &:active {
+        color: $color-white-100-80;
+        background-color: $color-2-light;
+      }
+    }
+  }
+
   &._white & {
     &__icon {
       color: $color-black;
+    }
+  }
+
+  &._blue-light & {
+    &__icon {
+      color: $color-white;
     }
   }
 
@@ -74,6 +101,12 @@
     }
 
     &._white:active & {
+      &__icon {
+        color: $color-white-100-80;
+      }
+    }
+
+    &._blue-light:active & {
       &__icon {
         color: $color-white-100-80;
       }

@@ -1,0 +1,170 @@
+@import "colors";
+@import "mixins";
+@import "text";
+@import "vars";
+
+.contacts {
+  background-color: $color-gray-18;
+}
+
+.contacts__content {
+  display: flex;
+  flex-direction: column;
+  padding-top: 90px;
+  padding-bottom: 140px;
+
+  @include respond-to($medium) {
+    padding-top: 192px;
+  }
+}
+
+.contacts__title {
+  @include p3;
+
+  width: max-content;
+  position: relative;
+  color: $color-white;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+
+  @include respond-to($small) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @include respond-to($medium) {
+    @include p2;
+  }
+
+  &::after {
+    content: "";
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    background-color: $color-1;
+  }
+}
+
+.contacts__main {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: 82px;
+  margin-right: -24px;
+  margin-left: -24px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-bottom: 110px;
+
+  @include respond-to($large) {
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 150px;
+  }
+
+  &::after {
+    content: "";
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: $color-gray-17;
+  }
+}
+
+.contacts__message {
+  @include h4;
+
+  color: $color-white;
+
+  @include respond-to($medium) {
+    @include h3;
+  }
+
+  @include respond-to($large) {
+    width: 60%;
+  }
+}
+
+.contacts__info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 72px;
+
+  @include respond-to($medium) {
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  @include respond-to($large) {
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 0;
+  }
+}
+
+.contacts__row {
+  &:not(:first-child) {
+    margin-top: 28px;
+
+    @include respond-to($medium) {
+      margin-top: 0;
+    }
+
+    @include respond-to($large) {
+      margin-top: 28px;
+    }
+  }
+}
+
+.contacts__label {
+  @include label1;
+
+  color: $color-white-100-40;
+
+  @include respond-to($medium) {
+    @include p1;
+  }
+}
+
+.contacts__text {
+  @include p1;
+
+  color: $color-white;
+  transition: color $transition-data;
+
+  @include respond-to($medium) {
+    @include h5;
+  }
+
+  &._link {
+    &:hover {
+      color: $color-2;
+    }
+
+    &:active {
+      color: $color-2-light;
+    }
+  }
+}
+
+.contacts__btn {
+  width: 100%;
+  margin-top: 48px;
+  padding-left: 48px;
+  padding-right: 48px;
+
+  @include respond-to($small) {
+    margin-top: 56px;
+  }
+}
+
+.contacts__social {
+  margin-top: 32px;
+}
