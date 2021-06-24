@@ -44,6 +44,7 @@
   background-color: transparent;
   transition: color $transition-data;
   cursor: pointer;
+  outline: none;
 
   @include respond-to($medium) {
     top: 16px;
@@ -62,7 +63,7 @@
 }
 
 .dialog__content {
-  height: 80vh;
+  height: 70vh;
   position: relative;
   margin-left: 16px;
   margin-right: 16px;

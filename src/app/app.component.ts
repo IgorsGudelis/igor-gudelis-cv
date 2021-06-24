@@ -38,6 +38,7 @@ import jump from 'jump.js';
 })
 export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('about', { read: ElementRef }) aboutRef!: ElementRef;
+  @ViewChild('contacts', { read: ElementRef }) contactsRef!: ElementRef;
   @ViewChild('home', { read: ElementRef }) homeRef!: ElementRef;
   @ViewChild('resume', { read: ElementRef }) resumeRef!: ElementRef;
   @ViewChild('testimonials', { read: ElementRef }) testimonialsRef!: ElementRef;
@@ -53,10 +54,15 @@ export class AppComponent implements OnInit, AfterViewInit {
     resume: 'resume',
     testimonials: 'testimonials',
     works: 'works',
+    contacts: 'contacts',
   };
 
   private get aboutElement(): HTMLElement {
     return this.aboutRef.nativeElement;
+  }
+
+  private get contactsElement(): HTMLElement {
+    return this.contactsRef.nativeElement;
   }
 
   private get homeElement(): HTMLElement {
@@ -154,12 +160,17 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.onSectionIntercept(this.sectionIds.works),
       options
     );
+    const observerContacts = new IntersectionObserver(
+      this.onSectionIntercept(this.sectionIds.contacts),
+      options
+    );
 
     observerHome.observe(this.homeElement);
     observerAbout.observe(this.aboutElement);
     observerResume.observe(this.resumeElement);
     observerTestimonials.observe(this.testimonialsElement);
     observerWorks.observe(this.worksElement);
+    observerContacts.observe(this.contactsElement);
   }
 
   private onChangeNavActive(navLink: string): void {
