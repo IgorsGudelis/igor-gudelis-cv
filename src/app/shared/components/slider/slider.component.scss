@@ -81,6 +81,11 @@
   cursor: pointer;
   outline: none;
 
+  @include respond-to($small) {
+    position: absolute;
+    bottom: -74px;
+  }
+
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       color: $color-white-100-50;
@@ -99,6 +104,18 @@
 
   &._rounded {
     border-radius: 50%;
+  }
+
+  &._left {
+    @include respond-to($small) {
+      left: 0;
+    }
+  }
+
+  &._right {
+    @include respond-to($small) {
+      right: 0;
+    }
   }
 }
 

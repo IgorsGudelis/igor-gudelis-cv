@@ -23,29 +23,27 @@
   </div>
 
   <div class="slider__actions">
-    <ng-container *ngIf="screenService.screen !== ScreenWidth.MOBILE">
-      <button
-        class="slider__btn _icon-only _rounded"
-        type="button"
-        (click)="onClickPrev()"
-      >
-        <app-svg-icon
-          class="slider__actions-icon"
-          icon="arrow-left"
-        ></app-svg-icon>
-      </button>
+    <button
+      class="slider__btn _icon-only _rounded _left"
+      type="button"
+      (click)="onClickPrev()"
+    >
+      <app-svg-icon
+        class="slider__actions-icon"
+        icon="arrow-left"
+      ></app-svg-icon>
+    </button>
 
-      <button
-        class="slider__btn _icon-only _rounded"
-        type="button"
-        (click)="onClickNext()"
-      >
-        <app-svg-icon
-          class="slider__actions-icon"
-          icon="arrow-right"
-        ></app-svg-icon>
-      </button>
-    </ng-container>
+    <button
+      class="slider__btn _icon-only _rounded _right"
+      type="button"
+      (click)="onClickNext()"
+    >
+      <app-svg-icon
+        class="slider__actions-icon"
+        icon="arrow-right"
+      ></app-svg-icon>
+    </button>
 
     <div class="slider__bullets">
       <span
