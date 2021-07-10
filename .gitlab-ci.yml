@@ -17,10 +17,18 @@ cache: &node_modules_cache
 
 bootstrap:npm:
   stage: setup
+  cache:
+    <<: *node_modules_cache
   script:
+    - echo $(git diff-tree --no-commit-id --name-only -r -m $CI_COMMIT_SHA) | grep -Eq "package-lock.json" && IS_NEED_REFRESH_NODE_MODULES=1 || IS_NEED_REFRESH_NODE_MODULES=0
+    - if [ -d ./node_modules ]; then IS_NODE_MODULES_EXISTS_IN_CACHE=1; else IS_NODE_MODULES_EXISTS_IN_CACHE=0;fi;
+    - if [ $IS_NEED_REFRESH_NODE_MODULES -eq 0 ] && [ $IS_NODE_MODULES_EXISTS_IN_CACHE -eq 1 ]; then exit 0;fi;
     - npm ci
   tags:
     - docker
+  only:
+    refs:
+      - master
 
 #DOCKER_BUILDKIT=1 to choose right .dockerignore file https://github.com/moby/moby/issues/12886 https://docs.docker.com/develop/develop-images/build_enhancements/
 build:web:
