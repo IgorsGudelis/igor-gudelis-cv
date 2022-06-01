@@ -3,7 +3,7 @@ import { InfoSocial } from '@shared/models';
 export const INFO_SOCIAL: InfoSocial[] = [
   {
     icon: 'linkedin',
-    link: 'https://www.linkedin.com/in/igor-gudelis-679855115',
+    link: 'https://www.linkedin.com/in/ihar-hudelis-679855115',
   },
   {
     icon: 'github',
