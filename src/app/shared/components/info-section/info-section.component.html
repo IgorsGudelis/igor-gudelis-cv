@@ -18,12 +18,16 @@
         </span>
       </p>
 
+      <p class="info-section__item-tech-stack" *ngIf="item.techStack">
+        <span class="info-section__item-tech-stack-label">Tech stack:</span>
+        {{ item.techStack }}
+      </p>
+
       <p
         class="info-section__item-text"
         [class._just-text]="!item.title && !item.mainLabel"
-      >
-        {{ item.text }}
-      </p>
+        [innerHTML]="item.text"
+      ></p>
 
       <div class="info-section__item-ng-content">
         <ng-content></ng-content>
